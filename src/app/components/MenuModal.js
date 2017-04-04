@@ -30,7 +30,7 @@ export default class MenuModal extends Component {
         visible={this.props.visible}
         >
         <ListView
-          style={styles.container}
+          contentContainerStyle={styles.container}
           dataSource={this.state.dataSource}
           initialListSize={this.state.rowCount}
           renderSeparator={this._renderSeparator}

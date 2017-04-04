@@ -7,15 +7,23 @@ import Selector from './components/Selector';
 import FooterButtons from './components/ui/FooterButtons';
 
 
-const Order = () => (
-  <View style={styles.container}>
-    <OrderHead />
-    <Selector />
-    <FooterButtons />
-  </View>
-)
+export default class Order extends Component {
+  
+  constructor(props) {
+    super(props)
+  }
 
-export default Order;
+  render() {
+    return(
+      <View style={styles.container}>
+        <OrderHead />
+        <Selector />
+        <FooterButtons />
+      </View>
+    )
+  }
+}
+
 
 const styles = {
   container: {

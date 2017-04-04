@@ -6,9 +6,10 @@ import { connect } from 'react-redux';
 class CartModal extends Component {
 
   constructor(props) {
-    super()
+    super(props)
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: '',
+      dataSource: ds.cloneWithRows(''),
     };
   }
 
