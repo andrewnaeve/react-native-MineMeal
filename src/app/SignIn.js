@@ -8,8 +8,10 @@ import { StyleSheet,
           TouchableWithoutFeedback,
           KeyboardAvoidingView, 
           LayoutAnimation } from 'react-native';
-import { connect } from 'react-redux';
 import { Components } from 'expo';
+
+import firebase from './firebase';
+
 import { height, width, containerWidth, block, RStyles } from './assets/styles/style'; 
 import Icon from 'react-native-vector-icons/Ionicons';
 const { LinearGradient } = Components;
@@ -79,7 +81,17 @@ export default class SignIn extends Component {
   }
 
   handleSignUp() {
-    
+    firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch(function(errr) {
+      let errorCode = error.code;
+      let errorMessage = error.message;
+    })
+    this.setState({
+      email: '',
+      password: '',
+      passwordCheck: '',
+    })
+    this.refs['password'].setNativeProps({text: ''})
+    this.refs['passwordCheck'].setNativeProps({text: ''})
   }
 
   render() {
@@ -99,6 +111,7 @@ export default class SignIn extends Component {
                   <TextInput style={[styles.input, 
                     this.state.password === this.state.passwordCheck ? null : styles.red]}
                     keyboardType={'default'}
+                    ref={'password'}
                     placeholder="Password" 
                     secureTextEntry={true} 
                     onChangeText={(text) => this.changePassword(text)}/>
@@ -107,6 +120,8 @@ export default class SignIn extends Component {
                 <View style={styles.wrap}>
                   <TextInput style={[styles.input, 
                     this.state.password === this.state.passwordCheck ? null : styles.red]} 
+                    keyboardType={'default'}
+                    ref={'passwordCheck'}
                     placeholder="Password" 
                     secureTextEntry={true} 
                     keyboardType={'default'}
