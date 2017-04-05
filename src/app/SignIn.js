@@ -11,6 +11,7 @@ import { StyleSheet,
 import { connect } from 'react-redux';
 import { Components } from 'expo';
 import { height, width, containerWidth, block, RStyles } from './assets/styles/style'; 
+import Icon from 'react-native-vector-icons/Ionicons';
 const { LinearGradient } = Components;
 
 
@@ -49,7 +50,7 @@ export default class SignIn extends Component {
     let newSize = height - e.endCoordinates.height
     this.setState({
       visibleHeight: newSize,
-      topLogo: { width: 200, height: 200 }
+      topLogo: { width: 250, height: 250 }
     })
   }
 
@@ -84,27 +85,33 @@ export default class SignIn extends Component {
   render() {
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <LinearGradient style={[styles.container, {height: this.state.visibleHeight}]} colors={['#ffffff', '#04bff3']}>
-          <Image style={[styles.logo, this.state.topLogo]} source={require("./assets/img/mine_final.png")}/>
+        <LinearGradient style={[styles.container, {height: this.state.visibleHeight}]} colors={['#F7F7F7', '#FF5B37']}>
+          <Image style={[styles.logo, this.state.topLogo]} source={require("./assets/img/mine_finalWORDS.png")}/>
           <View>
           
           <View style={styles.form}>
             <View style={styles.wrap}>
-              <TextInput style={styles.input} type={'email-address'} placeholder="Email" onChangeText={(text) => this.changeEmail(text)}/>
+              <TextInput style={styles.input} keyboardType={'email-address'} placeholder="Email" onChangeText={(text) => this.changeEmail(text)}/>
+              <Icon style={styles.icons} name="md-person" size={25} color="#D7D7D7" />
             </View>
 
+                <View style={styles.wrap}>
+                  <TextInput style={[styles.input, 
+                    this.state.password === this.state.passwordCheck ? null : styles.red]}
+                    keyboardType={'default'}
+                    placeholder="Password" 
+                    secureTextEntry={true} 
+                    onChangeText={(text) => this.changePassword(text)}/>
+                  <Icon style={[styles.icons, styles.lock]} name="md-lock" size={25} color="#D7D7D7" />
+                </View>
                 <View style={styles.wrap}>
                   <TextInput style={[styles.input, 
                     this.state.password === this.state.passwordCheck ? null : styles.red]} 
                     placeholder="Password" 
                     secureTextEntry={true} 
-                    onChangeText={(text) => this.changePassword(text)}/>
-                </View>
-                <View style={styles.wrap}>
-                  <TextInput style={[styles.input, 
-                    this.state.password === this.state.passwordCheck ? null : styles.red]} 
-                    placeholder="Password" secureTextEntry={true} 
+                    keyboardType={'default'}
                     onChangeText={(text) => this.checkPassword(text)}/>
+                  <Icon style={[styles.icons, styles.lock]} name="md-lock" size={25} color="#D7D7D7" />
                 </View>
               </View>
             
@@ -134,6 +141,16 @@ const styles = {
   },
   logo: {
     resizeMode: 'cover',
+    marginTop: -30,
+  },
+  icons: {
+    position: 'absolute',
+    top: 5,
+    left: 7,
+    backgroundColor: 'transparent',
+  },
+  lock: {
+    left: 8,
   },
   input: {
     borderColor: '#F8F8F8',
@@ -142,7 +159,10 @@ const styles = {
     width: width * .8,
     backgroundColor: 'white',
     borderRadius: 5,
-    paddingLeft: 10,
+    paddingLeft: 35,
+  },
+  form: {
+    justifyContent: 'center',
   },
   green: {
     borderColor: 'green',
