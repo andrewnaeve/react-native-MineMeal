@@ -38,7 +38,7 @@ class CartModal extends Component {
           </View>
           <ListView
               dataSource={this.state.dataSource}
-              renderRow={(rowData) => <View styles={styles.food}>
+              renderRow={(rowData) => <View style={styles.food}>
                                         <Text>Meal:</Text>
                                         <Text>Protein: {rowData.meal[0]}</Text>
                                         <Text>Protein Flavor: {rowData.meal[1]}</Text>
