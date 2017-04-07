@@ -26,6 +26,7 @@ export default class SignUp extends Component {
       passwordCheck: '',
       visibleHeight: height,
       topLogo: {height: 300, width: 300},
+      error: null,
     })
     
     this.handleSignUp = this.handleSignUp.bind(this)
@@ -51,6 +52,8 @@ export default class SignUp extends Component {
     })
   }
 
+
+
   keyboardWillHide(e) {
     LayoutAnimation.easeInEaseOut()
     this.setState({
@@ -61,11 +64,22 @@ export default class SignUp extends Component {
   }
 
   handleSignUp() {
-    firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+    firebase.auth().createUserWithEmailAndPassword(this.state.email.trim().toLowerCase(), this.state.password)
+    .then(function(user) {
+      console.log('success')
+      console.log('the user is', user)
+    })
     .catch(function(error) {
       let errorCode = error.code;
       let errorMessage = error.message;
-    })
+      if(error) {
+          this.setState({
+            error: errorMessage,
+          })
+        }
+      }.bind(this)
+    )
+
     this.setState({
       email: '',
       password: '',
@@ -83,9 +97,9 @@ export default class SignUp extends Component {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={{height: this.state.visibleHeight}}>
           <LinearGradient style={styles.container} colors={['#F7F7F7', '#F7F7F7', '#FF5B37']}>
             <Image style={[styles.logo, this.state.topLogo]} source={require("../assets/img/mine_finalWORDS.png")}/>
+            <View><Text style={styles.errorText}>{this.state.error}</Text></View>
               
               <View style={styles.form}>
-                
                 <View style={styles.wrap}>
                   <TextInput style={styles.input} keyboardType={'email-address'} placeholder="Email" onChangeText={(text) => this.setState({email: text})}/>
                   <Icon style={styles.icons} name="md-mail" size={25} color="#D7D7D7" />
@@ -116,7 +130,7 @@ export default class SignUp extends Component {
 
                 </View>
 
-              <TouchableOpacity activeOpacity={.7} onPress={this.props.closeSignUp}>
+              <TouchableOpacity activeOpacity={.7} onPress={this.handleSignUp}>
                 <LinearGradient
                   colors={['#fcb755', '#fcaa58', '#fca226']}
                   style={styles.button}>
@@ -191,5 +205,10 @@ const styles = {
     fontSize: 20,
     color: '#fff',
     
-  }
+  },
+  errorText: {
+    color: 'red',
+    textAlign: 'center',
+    backgroundColor: 'transparent',
+  },
 }

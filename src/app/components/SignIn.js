@@ -25,8 +25,9 @@ export default class SignIn extends Component {
       password: '',
       visibleHeight: height,
       topLogo: {height: 300, width: 300},
+      error: null,
     })
-    this.handleSignUp = this.handleSignUp.bind(this)
+    this.handleSignIn = this.handleSignIn.bind(this)
   }
 
 
@@ -59,12 +60,23 @@ export default class SignIn extends Component {
     LayoutAnimation.easeInEaseOut()
   }
 
-  handleSignUp() {
-    firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+  handleSignIn() {
+    firebase.auth().signInWithEmailAndPassword(this.state.email.trim().toLowerCase(), this.state.password)
+    .then(function(user) {
+      console.log('success')
+      console.log('the user is', user)
+    })
     .catch(function(error) {
       let errorCode = error.code;
       let errorMessage = error.message;
-    })
+      if(error) {
+          this.setState({
+            error: errorMessage,
+          })
+        }
+      }.bind(this)
+    )
+
     this.setState({
       email: '',
       password: '',
@@ -82,8 +94,8 @@ export default class SignIn extends Component {
           <LinearGradient style={styles.container} colors={['#F7F7F7', '#F7F7F7', '#FF5B37']}>
             <Image style={[styles.logo, this.state.topLogo]} source={require("../assets/img/mine_finalWORDS.png")}/>
               
+              <View><Text style={styles.errorText}>{this.state.error}</Text></View>
               <View style={styles.form}>
-                
                 <View style={styles.wrap}>
                   <TextInput style={styles.input} keyboardType={'email-address'} placeholder="Email" onChangeText={(text) => this.setState({email: text})}/>
                   <Icon style={styles.icons} name="md-mail" size={25} color="#D7D7D7" />
@@ -101,7 +113,7 @@ export default class SignIn extends Component {
 
                 </View>
 
-              <TouchableOpacity activeOpacity={.7} onPress={this.props.closeSignIn}>
+              <TouchableOpacity activeOpacity={.7} onPress={this.handleSignIn}>
                 <LinearGradient
                   colors={['#fcb755', '#fcaa58', '#fca226']}
                   style={styles.button}>
@@ -175,7 +187,11 @@ const styles = {
   text: {
     backgroundColor: 'transparent',
     fontSize: 20,
-    color: '#fff',
-    
+    color: '#fff', 
+  },
+  errorText: {
+    color: 'red',
+    textAlign: 'center',
+    backgroundColor: 'transparent',
   }
 }
