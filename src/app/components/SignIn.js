@@ -30,6 +30,9 @@ export default class SignIn extends Component {
     this.handleSignIn = this.handleSignIn.bind(this)
   }
 
+  back() {
+    this.props.closeSignIn()
+  }
 
   componentWillMount () {
     this.keyboardWillShowListener = Keyboard.addListener('keyboardWillShow', this.keyboardWillShow.bind(this))
@@ -92,7 +95,9 @@ export default class SignIn extends Component {
       
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={{height: this.state.visibleHeight}}>
           <LinearGradient style={styles.container} colors={['#F7F7F7', '#F7F7F7', '#FF5B37']}>
-            <Image style={[styles.logo, this.state.topLogo]} source={require("../assets/img/mine_finalWORDS.png")}/>
+
+              <Icon style={styles.back} name="ios-arrow-back" size={45} color="#fca226" onPress={this.back.bind(this)}/>
+              <Image style={[styles.logo, this.state.topLogo]} source={require("../assets/img/mine_finalWORDS.png")}/>
               
               <View><Text style={styles.errorText}>{this.state.error}</Text></View>
               <View style={styles.form}>
@@ -132,11 +137,16 @@ export default class SignIn extends Component {
 const styles = {
   container: {
     flex: 1,
-    alignItems: 'center',       
+    alignItems: 'center',
+
+
+  },
+  header: {
+    flexDirection: 'row',
   },
   logo: {
     resizeMode: 'cover',
-    marginTop: -30,
+    marginTop: -40,
   },
   icons: {
     position: 'absolute',
@@ -193,5 +203,12 @@ const styles = {
     color: 'red',
     textAlign: 'center',
     backgroundColor: 'transparent',
+    marginBottom: 10,
+  },
+  back: {
+    backgroundColor: 'transparent',
+    position: 'absolute',
+    top: 25,
+    left: 20,
   }
 }

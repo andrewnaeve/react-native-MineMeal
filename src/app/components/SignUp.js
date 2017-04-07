@@ -28,18 +28,17 @@ export default class SignUp extends Component {
       topLogo: {height: 300, width: 300},
       error: null,
     })
-    
-    this.handleSignUp = this.handleSignUp.bind(this)
+    this.handleSignUp = this.handleSignUp.bind(this);
   }
 
   componentWillMount () {
-    this.keyboardWillShowListener = Keyboard.addListener('keyboardWillShow', this.keyboardWillShow.bind(this))
-    this.keyboardWillHideListener = Keyboard.addListener('keyboardWillHide', this.keyboardWillHide.bind(this))
+    this.keyboardWillShowListener = Keyboard.addListener('keyboardWillShow', this.keyboardWillShow.bind(this));
+    this.keyboardWillHideListener = Keyboard.addListener('keyboardWillHide', this.keyboardWillHide.bind(this));
   }
 
   componentWillUnmount () {
-    this.keyboardWillShowListener.remove()
-    this.keyboardWillHideListener.remove()
+    this.keyboardWillShowListener.remove();
+    this.keyboardWillHideListener.remove();
   }
 
   keyboardWillShow (e) {
@@ -52,15 +51,17 @@ export default class SignUp extends Component {
     })
   }
 
-
-
   keyboardWillHide(e) {
-    LayoutAnimation.easeInEaseOut()
+    LayoutAnimation.easeInEaseOut();
     this.setState({
       visibleHeight: height,
       topLogo: { width: 300, height: 300 },
       isKeyboardOpened: false,
     })
+  }
+
+  back() {
+    this.props.closeSignUp();
   }
 
   handleSignUp() {
@@ -96,9 +97,10 @@ export default class SignUp extends Component {
              visible={this.props.visible}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={{height: this.state.visibleHeight}}>
           <LinearGradient style={styles.container} colors={['#F7F7F7', '#F7F7F7', '#FF5B37']}>
+            <Icon style={styles.back} name="ios-arrow-back" size={45} color="#fca226" onPress={this.back.bind(this)}/>
             <Image style={[styles.logo, this.state.topLogo]} source={require("../assets/img/mine_finalWORDS.png")}/>
-            <View><Text style={styles.errorText}>{this.state.error}</Text></View>
-              
+
+            <View><Text style={styles.errorText}>{this.state.error}</Text></View>              
               <View style={styles.form}>
                 <View style={styles.wrap}>
                   <TextInput style={styles.input} keyboardType={'email-address'} placeholder="Email" onChangeText={(text) => this.setState({email: text})}/>
@@ -153,7 +155,7 @@ const styles = {
   },
   logo: {
     resizeMode: 'cover',
-    marginTop: -30,
+    marginTop: -40,
   },
   icons: {
     position: 'absolute',
@@ -210,5 +212,12 @@ const styles = {
     color: 'red',
     textAlign: 'center',
     backgroundColor: 'transparent',
+    marginBottom: 10,
+  },
+  back: {
+    backgroundColor: 'transparent',
+    position: 'absolute',
+    top: 20,
+    left: 20,
   },
 }
