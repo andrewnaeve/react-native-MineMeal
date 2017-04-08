@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import * as firebase from 'firebase';
-// import firebaseConfig from './secrets/firebaseConfig';
 
 import { Provider } from 'react-redux';
 import { store } from './src/app/store';
 
 import Main from './src/app/Main';
+import { startListeningToAuthChanges } from './src/app/actions/auth';
 
-// firebase.initializeApp(firebaseConfig);
-
+store.dispatch(startListeningToAuthChanges());
 const App = () => (
   <Provider store={store}>
     <Main />
   </Provider>
 );
+
+
 
 export default App;

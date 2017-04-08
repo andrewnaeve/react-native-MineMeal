@@ -10,7 +10,7 @@ import { StyleSheet,
           LayoutAnimation } from 'react-native';
 import { Components } from 'expo';
 
-import firebase from '../firebase';
+import { auth } from '../firebase';
 
 import { height, width, containerWidth, block, RStyles } from '../assets/styles/style'; 
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -25,14 +25,11 @@ export default class SignIn extends Component {
       password: '',
       visibleHeight: height,
       topLogo: {height: 300, width: 300},
-      error: null,
+      error: '',
     })
     this.handleSignIn = this.handleSignIn.bind(this)
   }
 
-  back() {
-    this.props.closeSignIn()
-  }
 
   componentWillMount () {
     this.keyboardWillShowListener = Keyboard.addListener('keyboardWillShow', this.keyboardWillShow.bind(this))
@@ -42,10 +39,14 @@ export default class SignIn extends Component {
   componentWillUnmount () {
     this.keyboardWillShowListener.remove()
     this.keyboardWillHideListener.remove()
+    this.setState({
+      error: '',
+    })
+    console.log('unmount')
   }
 
   keyboardWillShow (e) {
-    let newSize = height - e.endCoordinates.height
+    let newSize = height - e.endCoordinates.height;
     this.setState({
       visibleHeight: newSize,
       topLogo: { width: 250, height: 250 },
@@ -63,8 +64,15 @@ export default class SignIn extends Component {
     LayoutAnimation.easeInEaseOut()
   }
 
+  back() {
+    this.props.closeSignIn()
+    this.setState({
+      error: '',
+    })
+  }
+
   handleSignIn() {
-    firebase.auth().signInWithEmailAndPassword(this.state.email.trim().toLowerCase(), this.state.password)
+    auth.signInWithEmailAndPassword(this.state.email.trim().toLowerCase(), this.state.password)
     .then(function(user) {
       console.log('success')
       console.log('the user is', user)
@@ -96,7 +104,10 @@ export default class SignIn extends Component {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={{height: this.state.visibleHeight}}>
           <LinearGradient style={styles.container} colors={['#F7F7F7', '#F7F7F7', '#FF5B37']}>
 
-              <Icon style={styles.back} name="ios-arrow-back" size={45} color="#fca226" onPress={this.back.bind(this)}/>
+              <TouchableOpacity style={styles.back} onPress={this.back.bind(this)}>
+                <Icon name="ios-arrow-back" size={45} color="#fca226" />
+              </TouchableOpacity>
+
               <Image style={[styles.logo, this.state.topLogo]} source={require("../assets/img/mine_finalWORDS.png")}/>
               
               <View><Text style={styles.errorText}>{this.state.error}</Text></View>
