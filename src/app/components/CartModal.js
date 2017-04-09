@@ -11,20 +11,21 @@ class CartModal extends Component {
     this.state = {
       dataSource: ds.cloneWithRows(''),
     };
-  }
+    this.handlePress = this.handlePress.bind(this);
+  };
 
   componentWillReceiveProps(props) {
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     const dataSource =  ds.cloneWithRows(props.cart);
     this.setState({
       dataSource: dataSource,
-    })
-  }
+    });
+  };
 
   handlePress() {
     this.props.closeModal()
     {console.log(this.props.cart)}
-  }
+  };
 
   render() {
     return(
@@ -48,7 +49,7 @@ class CartModal extends Component {
                                       </View>}
               
               />
-          <TouchableOpacity onPress={this.handlePress.bind(this)}><Text style={styles.close}>Close</Text></TouchableOpacity>
+          <TouchableOpacity onPress={this.handlePress}><Text style={styles.close}>Close</Text></TouchableOpacity>
         </View>
       </Modal> 
     );

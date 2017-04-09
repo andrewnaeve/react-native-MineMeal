@@ -67,6 +67,7 @@ export const startListeningToAuthChanges = () => {
     auth.onAuthStateChanged((user) => {
       if(user) {
         dispatch(signedIn(user));
+        console.log(user);
       } else {
         dispatch(signedOut())
       };

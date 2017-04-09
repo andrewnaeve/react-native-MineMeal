@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { connect } from 'react-redux';
+import React from 'react';
+import { View } from 'react-native';
 import Order from './Order';
-import SignUp from './components/SignUp';
 import Entry from './components/Entry';
 
-const Main = ({ auth, signUp, signIn, signOut }) => {
-  return (
-    <Order />
-  )
-}
+const Main = ({ auth }) => {
+	return (
+        <View style={styles.container}>
+          <Entry />
+        </View>
+	);
+};
 
 export default Main;
 
 const styles = {
-  container: {
-    flex: 1,       
-  }
-}
+	container: {
+		flex: 1,       
+	}
+};

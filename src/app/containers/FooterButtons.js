@@ -9,6 +9,7 @@ const mapStateToProps = ({ currentMeal, cart }) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addMeal(meal) { dispatch(addMeal(meal)); },
+    clearMeal() { dispatch(clearMeal()); },
   };
 };
 

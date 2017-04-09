@@ -25,32 +25,33 @@ export default class Entry extends Component {
     this.state = {
       signInVisible: false,
       signUpVisible: false,
-    }
-  }
+    };
+    
+  };
 
   handleSignIn() {
     this.setState({
       signInVisible: true,
-    })
-  }
+    });
+  };
 
   handleSignUp() {
     this.setState({
       signUpVisible: true,
-    })
-  }
+    });
+  };
 
   closeSignIn() {
     this.setState({
       signInVisible: false
-    })
-  }
+    });
+  };
 
   closeSignUp() {
     this.setState({
       signUpVisible: false
-    })
-  }
+    });
+  };
 
   render() {
     return (
@@ -59,6 +60,7 @@ export default class Entry extends Component {
           <Image style={styles.logo} source={require("../assets/img/mine_final.png")}/>
             <View style={styles.outer}>
               <View style={styles.inner}>
+
                 <TouchableOpacity activeOpacity={.7} onPress={this.handleSignIn.bind(this)}>
                   <SignIn visible={this.state.signInVisible} closeSignIn={this.closeSignIn.bind(this)} />
                   <LinearGradient
@@ -69,6 +71,7 @@ export default class Entry extends Component {
                     </Text>
                   </LinearGradient>
                 </TouchableOpacity>
+
                 <TouchableOpacity activeOpacity={.7} onPress={this.handleSignUp.bind(this)}>
                   <SignUp visible={this.state.signUpVisible} closeSignUp={this.closeSignUp.bind(this)} />
                   <LinearGradient
@@ -79,11 +82,12 @@ export default class Entry extends Component {
                     </Text>
                   </LinearGradient>
                 </TouchableOpacity>            
+
               </View>
             </View>
 
           </LinearGradient>
-    )
+    );
   };
 };
 

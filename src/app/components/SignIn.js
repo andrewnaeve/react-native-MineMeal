@@ -26,6 +26,7 @@ class SignIn extends Component {
       visibleHeight: height,
       topLogo: {height: 300, width: 300},
     })
+    console.log('eerr', props.auth.error)
     this.handleSignIn = this.handleSignIn.bind(this)
   }
 
@@ -61,7 +62,7 @@ class SignIn extends Component {
 
   back() {
     this.props.closeSignIn()
-    this.props.firebaseError('');
+    this.props.firebaseError('')
   }
 
   handleSignIn() {
