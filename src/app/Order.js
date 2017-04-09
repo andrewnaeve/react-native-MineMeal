@@ -16,13 +16,14 @@ export default class Order extends Component {
   render() {
     return(
       <View style={styles.container}>
+        <OrderHead />
         <Selector />
         <FooterButtons />
       </View>
     )
   }
 }
-        // <OrderHead />
+
 
 
 const styles = {

@@ -1,13 +1,6 @@
-import { createAction } from 'redux-actions';
-
 import { UPDATE_PROTEIN, UPDATE_PROTEINFLAVORS,
          UPDATE_VEGETABLES, UPDATE_STARCHES,
          ADD_MEAL, CLEAR_MEAL } from './types';
-
-
-// export const updateProtein = (protein) => (
-//   createAction(types.UPDATE_PROTEIN)(protein)
-// );
 
 export const updateProtein = (protein) => {
   return (dispatch) => {
@@ -32,32 +25,13 @@ export const updateStarches = (starches) => {
 
 export const addMeal = (meal) => {
   return (dispatch) => {
-    dispatch({ type: 'ADD_MEAL', meal: meal })
-  }
-}
-// export const addMeal = (meal) => (
-//   createAction(ADD_MEAL)(meal)
-// );
+    dispatch({ type: 'ADD_MEAL', meal: meal });
+    dispatch(clearMeal());
+  };
+};
 
-// export const updateProteinFlavors = (proteinFlavors) => (
-//   createAction(types.UPDATE_PROTEINFLAVORS)(proteinFlavors)
-// );
-
-// export const updateVegetables = (vegetables) => (
-//   createAction(types.UPDATE_VEGETABLES)(vegetables)
-// );
-
-// export const updateStarches = (starches) => (
-//   createAction(types.UPDATE_STARCHES)(starches)
-// );
-
-
-// export const clearMeal = () => (
-//   createAction(types.CLEAR_MEAL)()
-// );
-
-// export const allowMeal = (bool) => (
-//   createAction(types.ALLOW_MEAL)(bool)
-// );
-
-
+export const clearMeal = () => {
+  return (dispatch) => {
+    dispatch({ type: 'CLEAR_MEAL' });
+  };
+};

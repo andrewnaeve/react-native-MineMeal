@@ -5,7 +5,7 @@ const initialState = {
     error: '',
   },
   currentMeal: {
-    protein: 'a',
+    protein: '',
     proteinFlavors: '',
     vegetables: '',
     starches: '',
@@ -14,6 +14,3 @@ const initialState = {
 };
 
 export default initialState;
-  // currentMeal: {
-  // },
-  // cart: [],

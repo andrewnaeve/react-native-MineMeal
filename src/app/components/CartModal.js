@@ -15,7 +15,7 @@ class CartModal extends Component {
 
   componentWillReceiveProps(props) {
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    const dataSource =  ds.cloneWithRows(props.addMeal);
+    const dataSource =  ds.cloneWithRows(props.cart);
     this.setState({
       dataSource: dataSource,
     })
@@ -23,7 +23,7 @@ class CartModal extends Component {
 
   handlePress() {
     this.props.closeModal()
-    {console.log(this.props.addMeal)}
+    {console.log(this.props.cart)}
   }
 
   render() {
@@ -38,6 +38,7 @@ class CartModal extends Component {
           </View>
           <ListView
               dataSource={this.state.dataSource}
+              enableEmptySections={true}
               renderRow={(rowData) => <View style={styles.food}>
                                         <Text>Meal:</Text>
                                         <Text>Protein: {rowData.meal[0]}</Text>
@@ -50,14 +51,14 @@ class CartModal extends Component {
           <TouchableOpacity onPress={this.handlePress.bind(this)}><Text style={styles.close}>Close</Text></TouchableOpacity>
         </View>
       </Modal> 
-    )
-  }
-}
+    );
+  };
+};
 
 const mapStateToProps = (state) => {
   return {
-    addMeal: state.addMeal,
-  }
+    cart: state.cart,
+  };
 };
 
 export default connect(mapStateToProps)(CartModal);

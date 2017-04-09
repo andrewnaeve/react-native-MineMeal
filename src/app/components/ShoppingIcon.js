@@ -4,56 +4,52 @@ import Logo from './Logo';
 import CartModal from './CartModal';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { containerWidth } from '../assets/styles/style';
-import { connect } from 'react-redux';
 
 function Cart(props) {
   return (
     <Icon style={styles.icon} name="md-cart" size={30} color="#00bff3" />
     );
-}
+};
 
 class ShoppingIcon extends Component {
    constructor(props) {
     super(props)
     this.state = {
       modalVisible: false,
-    }
-  }
+    };
+    this.handlePress = this.handlePress.bind(this);
+  };
 
   handlePress() {
     this.setState({
       modalVisible: true,
-    })
-    {console.log('i was pressed')}
-  }
+    });
+    console.log('presss')
+  };
 
   closeModal() {
     this.setState({
-      modalVisible: !this.state.modalVisible
-    })
-  }
+      modalVisible: false
+    });
+  };
 
   render() {
     return(
-      <View style={styles.container} onPress={this.handlePress.bind(this)}>
-      <TouchableOpacity onPress={this.closeModal.bind(this)}>
+      <View style={styles.container} >
+      <TouchableOpacity onPress={this.handlePress}>
       <CartModal visible={this.state.modalVisible} closeModal={this.closeModal.bind(this)}/>
         <Cart />
         <View style={styles.circle}>
-          <Text style={styles.text}>{this.props.addMeal.length}</Text>
+          <Text style={styles.text}>{this.props.cart.length}</Text>
         </View>
         </TouchableOpacity>
       </View>
-    )
-  }
-}
-const mapStateToProps = (state) => {
-  return {
-    addMeal: state.addMeal,
-  }
+    );
+  };
 };
 
-export default connect(mapStateToProps)(ShoppingIcon);
+export default ShoppingIcon;
+
 const styles = StyleSheet.create({
   container: {
     height: 50,
@@ -80,4 +76,4 @@ const styles = StyleSheet.create({
     color: 'white',
     backgroundColor: 'transparent',
   },
-})
+});
