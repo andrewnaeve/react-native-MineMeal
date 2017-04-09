@@ -1,11 +1,15 @@
 import { connect } from 'react-redux';
-import Main from '../Main';
-import { signUp } from '../actions/auth';
+import { signUp, firebaseError } from '../actions/auth';
 import SignUp from '../components/SignUp';
+
+const mapStateToProps = ({auth}) => {
+  return { auth }
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    signUp() { dispatch(signUp()); },
+    signUp(email, password) { dispatch(signUp(email, password)); },
+    firebaseError(error) { dispatch(firebaseError(error)); }
   };
 };
 

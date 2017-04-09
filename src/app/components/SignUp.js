@@ -9,14 +9,13 @@ import { StyleSheet,
           TouchableWithoutFeedback,
           LayoutAnimation } from 'react-native';
 import { Components } from 'expo';
-
-import { auth } from '../firebase';
+import { connect } from 'react-redux';
 
 import { height, width, containerWidth, block, RStyles } from '../assets/styles/style'; 
 import Icon from 'react-native-vector-icons/Ionicons';
 const { LinearGradient } = Components;
 
-export default class SignUp extends Component {
+class SignUp extends Component {
 
   constructor(props) {
     super(props);
@@ -26,8 +25,8 @@ export default class SignUp extends Component {
       passwordCheck: '',
       visibleHeight: height,
       topLogo: {height: 300, width: 300},
-      error: '',
     })
+    console.log(props.auth.error)
     this.handleSignUp = this.handleSignUp.bind(this);
   }
 
@@ -62,35 +61,11 @@ export default class SignUp extends Component {
 
   back() {
     this.props.closeSignUp();
-    this.setState({
-      error: '',
-    })
+    this.props.firebaseError('');
   }
 
   handleSignUp() {
-    auth.createUserWithEmailAndPassword(this.state.email.trim().toLowerCase(), this.state.password)
-    .then(function(user) {
-      console.log('success')
-      console.log('the user is', user)
-    })
-    .catch(function(error) {
-      let errorCode = error.code;
-      let errorMessage = error.message;
-      if(error) {
-          this.setState({
-            error: errorMessage,
-          })
-        }
-      }.bind(this)
-    )
-
-    this.setState({
-      email: '',
-      password: '',
-      passwordCheck: '',
-    })
-    this.refs['password'].setNativeProps({text: ''})
-    this.refs['passwordCheck'].setNativeProps({text: ''})
+    this.props.signUp(this.state.email.trim().toLowerCase(), this.state.password)
   }
 
   render() {
@@ -107,7 +82,7 @@ export default class SignUp extends Component {
 
             <Image style={[styles.logo, this.state.topLogo]} source={require("../assets/img/mine_finalWORDS.png")}/>
 
-            <View><Text style={styles.errorText}>{this.state.error}</Text></View>              
+            <View><Text style={styles.errorText}>{this.props.auth.error}</Text></View>
               <View style={styles.form}>
                 <View style={styles.wrap}>
                   <TextInput style={styles.input} keyboardType={'email-address'} placeholder="Email" onChangeText={(text) => this.setState({email: text})}/>
@@ -139,7 +114,8 @@ export default class SignUp extends Component {
 
                 </View>
 
-              <TouchableOpacity activeOpacity={.7} onPress={this.handleSignUp}>
+              <TouchableOpacity activeOpacity={.7} onPress={this.handleSignUp}
+                                disabled={this.state.password === this.state.passwordCheck ? false : true} >
                 <LinearGradient
                   colors={['#fcb755', '#fcaa58', '#fca226']}
                   style={styles.button}>
@@ -154,6 +130,10 @@ export default class SignUp extends Component {
     )
   };
 };
+
+export default SignUp
+
+
 
 const styles = {
   container: {

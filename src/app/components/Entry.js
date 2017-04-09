@@ -7,8 +7,10 @@ import { StyleSheet,
           TouchableOpacity, 
           LayoutAnimation } from 'react-native';
 import { Components } from 'expo';
-import SignIn from './SignIn';
-import SignUp from './SignUp';
+
+import SignUp from '../containers/SignUpContainer';
+import SignIn from '../containers/SignInContainer';
+
 
 import firebase from '../firebase';
 
@@ -30,21 +32,18 @@ export default class Entry extends Component {
     this.setState({
       signInVisible: true,
     })
-    {console.log('sign in pressed')}
   }
 
   handleSignUp() {
     this.setState({
       signUpVisible: true,
     })
-    {console.log('Sign up pressed')}
   }
 
   closeSignIn() {
     this.setState({
       signInVisible: false
     })
-    {console.log('hi')}
   }
 
   closeSignUp() {
@@ -84,7 +83,6 @@ export default class Entry extends Component {
             </View>
 
           </LinearGradient>
-
     )
   };
 };

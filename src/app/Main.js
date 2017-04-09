@@ -5,18 +5,13 @@ import Order from './Order';
 import SignUp from './components/SignUp';
 import Entry from './components/Entry';
 
-export default class Main extends Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <Entry />
-    )
-  }
+const Main = ({ auth, signUp, signIn, signOut }) => {
+  return (
+    <Order />
+  )
 }
+
+export default Main;
 
 const styles = {
   container: {

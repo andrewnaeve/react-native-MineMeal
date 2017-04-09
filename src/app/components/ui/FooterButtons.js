@@ -3,23 +3,26 @@ import { Alert, View, Text, Modal, TouchableHighlight, TouchableOpacity, StyleSh
 import { connect } from 'react-redux';
 import * as stylings from '../../assets/styles/style';
 import AddCheckout from './AddCheckout';
-import { addMeal, clearMeal } from '../../actions/actions';
+
 
 
 class FooterButtons extends Component {
   
   constructor(props) {
     super(props)
-    }
+  }
 
   handleSubmit() {
-    if(this.props.protein !== '' && this.props.proteinFlavor !== '' &&
-      this.props.vegetables !== '' && this.props.starches !== '') {
-        this.props.dispatch(addMeal({meal: [this.props.protein,
-                                            this.props.proteinFlavors,
-                                            this.props.vegetables,
-                                            this.props.starches]}))
-        this.props.dispatch(clearMeal())
+
+    console.log(this.props.cart)
+    console.log('p', this.props.currentMeal.protein)
+    if(this.props.currentMeal.protein !== '' && this.props.currentMeal.proteinFlavor !== '' &&
+      this.props.currentMeal.vegetables !== '' && this.props.currentMeal.starches !== '') {
+        this.props.addMeal({meal: [this.props.currentMeal.protein,
+                                            this.props.currentMeal.proteinFlavors,
+                                            this.props.currentMeal.vegetables,
+                                            this.props.currentMeal.starches]})
+
       } else {
         Alert.alert('Order Incomplete', 'You\'re missing a food group!')
       }
@@ -50,17 +53,7 @@ class FooterButtons extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    protein: state.protein,
-    proteinFlavors: state.proteinFlavors,
-    vegetables: state.vegetables,
-    starches: state.starches,
-    addMeal: state.addMeal,
-  }
-};
-
-export default connect(mapStateToProps)(FooterButtons);
+export default FooterButtons;
 
 const styles = StyleSheet.create({
   container: {

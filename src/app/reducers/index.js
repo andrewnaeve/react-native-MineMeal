@@ -1,15 +1,19 @@
 import { combineReducers } from 'redux';
 import { protein, proteinFlavors, vegetables, starches, } from './menu';
-import addMeal from './addMeal';
-import authReducer from './auth';
+
+import auth from './auth';
+import currentMeal from './menu';
+import cart from './cart';
 
 const rootReducer = combineReducers({ 
-  protein,
-  proteinFlavors,
-  vegetables,
-  starches,
-  addMeal,
-  authReducer,
+  auth,
+  currentMeal,
+  cart
 });
 
 export default rootReducer;
+  // protein,
+  // proteinFlavors,
+  // vegetables,
+  // starches,
+  // addMeal,

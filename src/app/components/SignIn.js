@@ -16,7 +16,7 @@ import { height, width, containerWidth, block, RStyles } from '../assets/styles/
 import Icon from 'react-native-vector-icons/Ionicons';
 const { LinearGradient } = Components;
 
-export default class SignIn extends Component {
+class SignIn extends Component {
 
   constructor(props) {
     super(props);
@@ -25,7 +25,6 @@ export default class SignIn extends Component {
       password: '',
       visibleHeight: height,
       topLogo: {height: 300, width: 300},
-      error: '',
     })
     this.handleSignIn = this.handleSignIn.bind(this)
   }
@@ -39,10 +38,6 @@ export default class SignIn extends Component {
   componentWillUnmount () {
     this.keyboardWillShowListener.remove()
     this.keyboardWillHideListener.remove()
-    this.setState({
-      error: '',
-    })
-    console.log('unmount')
   }
 
   keyboardWillShow (e) {
@@ -66,33 +61,11 @@ export default class SignIn extends Component {
 
   back() {
     this.props.closeSignIn()
-    this.setState({
-      error: '',
-    })
+    this.props.firebaseError('');
   }
 
   handleSignIn() {
-    auth.signInWithEmailAndPassword(this.state.email.trim().toLowerCase(), this.state.password)
-    .then(function(user) {
-      console.log('success')
-      console.log('the user is', user)
-    })
-    .catch(function(error) {
-      let errorCode = error.code;
-      let errorMessage = error.message;
-      if(error) {
-          this.setState({
-            error: errorMessage,
-          })
-        }
-      }.bind(this)
-    )
-
-    this.setState({
-      email: '',
-      password: '',
-    })
-    this.refs['password'].setNativeProps({text: ''})
+    this.props.signIn(this.state.email.trim().toLowerCase(), this.state.password)
   }
 
   render() {
@@ -110,7 +83,7 @@ export default class SignIn extends Component {
 
               <Image style={[styles.logo, this.state.topLogo]} source={require("../assets/img/mine_finalWORDS.png")}/>
               
-              <View><Text style={styles.errorText}>{this.state.error}</Text></View>
+              <View><Text style={styles.errorText}>{this.props.auth.error}</Text></View>
               <View style={styles.form}>
                 <View style={styles.wrap}>
                   <TextInput style={styles.input} keyboardType={'email-address'} placeholder="Email" onChangeText={(text) => this.setState({email: text})}/>
@@ -145,12 +118,12 @@ export default class SignIn extends Component {
   };
 };
 
+export default SignIn;
+
 const styles = {
   container: {
     flex: 1,
     alignItems: 'center',
-
-
   },
   header: {
     flexDirection: 'row',

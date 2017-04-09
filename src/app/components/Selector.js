@@ -1,69 +1,33 @@
 import React, { Component } from 'react';
 import { View, Text, Modal, TouchableHighlight, TouchableOpacity, StyleSheet, TextInput, Dimensions, Image } from 'react-native';
-import { connect } from 'react-redux';
-
-import { updateProtein, updateProteinFlavors, updateVegetables, updateStarches } from '../actions/actions';
-
 import Panel from './Panel';
 
 import { proteinMenu, proteinFlavorsMenu, vegetablesMenu, starchesMenu } from './Menus';
-
 import { height, width, containerWidth, block, RStyles } from '../assets/styles/style'; 
 
-class Selector extends Component {
+const Selector = ({ currentMeal, updateProtein, updateProteinFlavors, updateVegetables, updateStarches}) => {
 
-  constructor(props) {
-    super(props)
-  }
-
-  handleProteinChange(protein) {
-    this.props.dispatch(updateProtein(protein))
-  }
-
-  handleProteinFlavorsChange(proteinFlavors) {
-    this.props.dispatch(updateProteinFlavors(proteinFlavors))
-  }
-
-  handleVegetablesChange(vegetables) {
-    this.props.dispatch(updateVegetables(vegetables))
-  }
-
-  handleStarchesChange(starches) {
-    this.props.dispatch(updateStarches(starches))
-  }
-
-  render() {
-    return(
-      <View style={styles.fix}>
-        <View style={styles.container}>
-          <Panel style={styles.panel} color={styles.orangePanel} menu={proteinMenu} handleChoice={this.handleProteinChange.bind(this)}>
-              {this.props.protein === '' ? <Image style={styles.image} source={require("../assets/img/protein.png")}></Image> : <Text style={RStyles.text}>{this.props.protein}</Text>}
-          </Panel>
-          <Panel color={styles.bluePanel} menu={proteinFlavorsMenu} handleChoice={this.handleProteinFlavorsChange.bind(this)}>
-            {this.props.proteinFlavors === '' ? <Image style={styles.image} source={require("../assets/img/proteinFlavors.png")}></Image> : <Text style={RStyles.text}>{this.props.proteinFlavors}</Text>}
-          </Panel>
-          <Panel color={styles.greenPanel} menu={vegetablesMenu} handleChoice={this.handleVegetablesChange.bind(this)}>
-            {this.props.vegetables === '' ? <Image style={styles.image} source={require("../assets/img/vegetables.png")}></Image> : <Text style={RStyles.text}>{this.props.vegetables}</Text>}
-          </Panel>
-          <Panel color={styles.mudPanel} menu={starchesMenu} handleChoice={this.handleStarchesChange.bind(this)}>
-            {this.props.starches === '' ? <Image style={styles.image} source={require("../assets/img/starches.png")}></Image> : <Text style={RStyles.text}>{this.props.starches}</Text>}
-          </Panel>
-        </View>
+  return(
+    <View style={styles.fix}>
+      <View style={styles.container}>
+        <Panel style={styles.panel} color={styles.orangePanel} menu={proteinMenu} handleChoice={updateProtein}>
+            {currentMeal.protein === '' ? <Image style={styles.image} source={require("../assets/img/protein.png")}></Image> : <Text style={RStyles.text}>{currentMeal.protein}</Text>}
+        </Panel>
+        <Panel color={styles.bluePanel} menu={proteinFlavorsMenu} handleChoice={updateProteinFlavors}>
+          {currentMeal.proteinFlavors === '' ? <Image style={styles.image} source={require("../assets/img/proteinFlavors.png")}></Image> : <Text style={RStyles.text}>{currentMeal.proteinFlavors}</Text>}
+        </Panel>
+        <Panel color={styles.greenPanel} menu={vegetablesMenu} handleChoice={updateVegetables}>
+          {currentMeal.vegetables === '' ? <Image style={styles.image} source={require("../assets/img/vegetables.png")}></Image> : <Text style={RStyles.text}>{currentMeal.vegetables}</Text>}
+        </Panel>
+        <Panel color={styles.mudPanel} menu={starchesMenu} handleChoice={updateStarches}>
+          {currentMeal.starches === '' ? <Image style={styles.image} source={require("../assets/img/starches.png")}></Image> : <Text style={RStyles.text}>{currentMeal.starches}</Text>}
+        </Panel>
       </View>
-    )
-  }
-}
-
-const mapStateToProps = (state) => {
-  return {
-    protein: state.protein,
-    proteinFlavors: state.proteinFlavors,
-    vegetables: state.vegetables,
-    starches: state.starches,
-  }
+    </View>
+  ); 
 };
 
-export default connect(mapStateToProps)(Selector);
+export default Selector;
 
 const styles = StyleSheet.create({
 

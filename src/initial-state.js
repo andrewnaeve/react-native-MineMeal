@@ -1,15 +1,19 @@
 const initialState = {
   auth: {
-    signedIn: false,
-    email: null
+    status: 'ANONYMOUS',
+    email: '',
+    error: '',
   },
   currentMeal: {
-    protein: '',
+    protein: 'a',
     proteinFlavors: '',
     vegetables: '',
     starches: '',
   },
-  cart: [],
+  cart: []
 };
 
 export default initialState;
+  // currentMeal: {
+  // },
+  // cart: [],

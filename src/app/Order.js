@@ -3,12 +3,12 @@ import { StyleSheet, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import Logo from './components/Logo';
 import OrderHead from './components/OrderHead';
-import Selector from './components/Selector';
-import FooterButtons from './components/ui/FooterButtons';
+import Selector from './containers/SelectorContainer';
+import FooterButtons from './containers/FooterButtons';
 
 
 export default class Order extends Component {
-  
+
   constructor(props) {
     super(props)
   }
@@ -16,13 +16,13 @@ export default class Order extends Component {
   render() {
     return(
       <View style={styles.container}>
-        <OrderHead />
         <Selector />
         <FooterButtons />
       </View>
     )
   }
 }
+        // <OrderHead />
 
 
 const styles = {

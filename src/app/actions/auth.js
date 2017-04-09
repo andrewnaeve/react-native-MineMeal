@@ -1,19 +1,44 @@
 import { createAction } from 'redux-actions';
 import { auth } from '../firebase';
 
-import { ATTEMPTING_LOGIN } from './types';
+import { ATTEMPTING_LOGIN, FIREBASE_ERROR, SIGN_IN, SIGN_OUT } from './types';
 
 export const signIn = (email, password) => {
   return (dispatch) => {
     dispatch({ type: 'ATTEMPTING_LOGIN' });
-    auth.signInWithEmailAndPassword(this.state.email.trim().toLowerCase(), this.state.password);
+    auth.signInWithEmailAndPassword(email, password)
+    .then(function(user) {
+      console.log('the user is', user)
+    })
+    .catch(function(error) {
+      let errorCode = error.code;
+      let errorMessage = error.message;
+      dispatch(firebaseError(errorMessage))
+      }
+    )
   };
 };
 
 export const signUp = (email, password) => {
+    console.log(email)
   return (dispatch) => {
     dispatch({ type: 'ATTEMPTING_LOGIN' });
-    auth.createUserWithEmailAndPassword(this.state.email.trim().toLowerCase(), this.state.password);
+    auth.createUserWithEmailAndPassword(email, password)
+    .then(function(user) {
+      console.log('the user is', user)
+    })
+    .catch(function(error) {
+      let errorCode = error.code;
+      let errorMessage = error.message;
+      dispatch(firebaseError(errorMessage))
+      }
+    )
+  };
+};
+
+export const firebaseError = (error) => {
+  return (dispatch) => {
+    dispatch({ type: 'FIREBASE_ERROR', error: error })
   };
 };
 
@@ -41,12 +66,9 @@ export const startListeningToAuthChanges = () => {
   return (dispatch) => {
     auth.onAuthStateChanged((user) => {
       if(user) {
-        {console.log('pleasehellow')}
-        console.log('the userdispatch', user)
         dispatch(signedIn(user));
       } else {
         dispatch(signedOut())
-        console.log('asdf')
       };
     });
   };
