@@ -26,7 +26,6 @@ class SignUp extends Component {
       visibleHeight: height,
       topLogo: {height: 300, width: 300},
     })
-    console.log(props.auth.error)
     this.handleSignUp = this.handleSignUp.bind(this);
   }
 
@@ -64,8 +63,21 @@ class SignUp extends Component {
     this.props.firebaseError('');
   }
 
+  checkSubmit() {
+    {console.log('hehhfla;s')}
+  }
+
+
   handleSignUp() {
+    {console.log('asdf;lkjasdf')};
     this.props.signUp(this.state.email.trim().toLowerCase(), this.state.password)
+  }
+
+  hideKeyboard() {
+    {console.log('hide keyboard')}
+    Keyboard.removeAllListeners('keyboardDidHide')
+    Keyboard.addListener('keyboardDidHide', () => { this.handleSignUp() })
+    Keyboard.dismiss()
   }
 
   render() {
@@ -114,7 +126,7 @@ class SignUp extends Component {
 
                 </View>
 
-              <TouchableOpacity activeOpacity={.7} onPress={this.handleSignUp}
+              <TouchableOpacity activeOpacity={.7} onPress={ () => { this.hideKeyboard() }}
                                 disabled={this.state.password === this.state.passwordCheck ? false : true} >
                 <LinearGradient
                   colors={['#fcb755', '#fcaa58', '#fca226']}

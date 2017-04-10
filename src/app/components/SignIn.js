@@ -49,7 +49,7 @@ class SignIn extends Component {
       isKeyboardOpened: true,
     })
     LayoutAnimation.easeInEaseOut()
-  }
+  };
 
   keyboardWillHide(e) {
     this.setState({
@@ -58,16 +58,16 @@ class SignIn extends Component {
       isKeyboardOpened: false,
     })
     LayoutAnimation.easeInEaseOut()
-  }
+  };
 
   back() {
     this.props.closeSignIn()
     this.props.firebaseError('')
-  }
+  };
 
   handleSignIn() {
     this.props.signIn(this.state.email.trim().toLowerCase(), this.state.password)
-  }
+  };
 
   render() {
     return (

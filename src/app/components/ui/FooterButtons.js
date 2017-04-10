@@ -13,9 +13,7 @@ class FooterButtons extends Component {
   }
 
   handleSubmit() {
-
-    console.log(this.props.cart)
-    console.log('p', this.props.currentMeal.protein)
+    
     if(this.props.currentMeal.protein !== '' && this.props.currentMeal.proteinFlavor !== '' &&
       this.props.currentMeal.vegetables !== '' && this.props.currentMeal.starches !== '') {
         this.props.addMeal({meal: [this.props.currentMeal.protein,

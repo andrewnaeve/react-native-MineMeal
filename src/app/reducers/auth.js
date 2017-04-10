@@ -12,10 +12,12 @@ export default function auth(state = initialState.auth, action) {
       return {
         status: 'ANONYMOUS',
         email: '',
+        loggedIn: false,
       }
     case 'SIGN_IN':
       return {
         status: 'SIGNED_IN',
+        loggedIn: true,
         email: action.email,
       }
     case 'FIREBASE_ERROR':

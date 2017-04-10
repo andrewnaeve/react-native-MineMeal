@@ -5,34 +5,40 @@ import { ATTEMPTING_LOGIN, FIREBASE_ERROR, SIGN_IN, SIGN_OUT } from './types';
 
 export const signIn = (email, password) => {
   return (dispatch) => {
+
     dispatch({ type: 'ATTEMPTING_LOGIN' });
     auth.signInWithEmailAndPassword(email, password)
     .then(function(user) {
+      dispatch(signedIn(user))
       console.log('the user is', user)
     })
     .catch(function(error) {
       let errorCode = error.code;
       let errorMessage = error.message;
-      dispatch(firebaseError(errorMessage))
+      console.log(error)
+      dispatch({ type: 'ANONYMOUS' });
+      dispatch(firebaseError(errorMessage));
       }
-    )
+    );
   };
 };
 
 export const signUp = (email, password) => {
-    console.log(email)
   return (dispatch) => {
     dispatch({ type: 'ATTEMPTING_LOGIN' });
     auth.createUserWithEmailAndPassword(email, password)
     .then(function(user) {
-      console.log('the user is', user)
+      console.log('the user is', user);
+      dispatch(signedIn(user));
     })
     .catch(function(error) {
       let errorCode = error.code;
       let errorMessage = error.message;
-      dispatch(firebaseError(errorMessage))
+      console.log('error report: ', errorCode, errorMessage)
+      dispatch({ type: 'ANONYMOUS' });
+      dispatch(firebaseError(errorMessage));
       }
-    )
+    );
   };
 };
 
@@ -62,15 +68,15 @@ const signedOut = (user) => {
   };
 };
 
-export const startListeningToAuthChanges = () => {
-  return (dispatch) => {
-    auth.onAuthStateChanged((user) => {
-      if(user) {
-        dispatch(signedIn(user));
-        console.log(user);
-      } else {
-        dispatch(signedOut())
-      };
-    });
-  };
-};
+// export const startListeningToAuthChanges = () => {
+//   return (dispatch) => {
+//     auth.onAuthStateChanged((user) => {
+//       if(user) {
+//         dispatch(signedIn(user));
+//         console.log('usser', user);
+//       } else {
+//         dispatch(signedOut())
+//       };
+//     });
+//   };
+// };

@@ -2,12 +2,14 @@ import React from 'react';
 import { View } from 'react-native';
 import Order from './Order';
 import Entry from './components/Entry';
+import Loading from './components/Loading';
 
 const Main = ({ auth }) => {
 	return (
-        <View style={styles.container}>
-          <Entry />
-        </View>
+      <View style={styles.container}>
+          {auth.loggedIn ? <Order /> : <Entry />}
+          
+      </View>
 	);
 };
 

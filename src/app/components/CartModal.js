@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions, Image, Modal, ListView, TouchableOpacity } from 'react-native';
 import { width, height, containerWidth } from '../assets/styles/style';
 import { connect } from 'react-redux';
+import { auth } from '../firebase';
 
 class CartModal extends Component {
 
@@ -12,6 +13,7 @@ class CartModal extends Component {
       dataSource: ds.cloneWithRows(''),
     };
     this.handlePress = this.handlePress.bind(this);
+    console.log(this.props.log.signedIn)
   };
 
   componentWillReceiveProps(props) {
@@ -25,6 +27,10 @@ class CartModal extends Component {
   handlePress() {
     this.props.closeModal()
     {console.log(this.props.cart)}
+  };
+
+  handleSignOut() {
+    auth.signOut();
   };
 
   render() {
@@ -50,6 +56,7 @@ class CartModal extends Component {
               
               />
           <TouchableOpacity onPress={this.handlePress}><Text style={styles.close}>Close</Text></TouchableOpacity>
+          <TouchableOpacity onPress={this.handleSignOut}><Text style={styles.close}>sign out</Text></TouchableOpacity>
         </View>
       </Modal> 
     );
@@ -59,6 +66,7 @@ class CartModal extends Component {
 const mapStateToProps = (state) => {
   return {
     cart: state.cart,
+    log: state.auth
   };
 };
 

@@ -12,8 +12,3 @@ const rootReducer = combineReducers({
 });
 
 export default rootReducer;
-  // protein,
-  // proteinFlavors,
-  // vegetables,
-  // starches,
-  // addMeal,

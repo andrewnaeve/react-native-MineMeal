@@ -1,6 +1,7 @@
 const initialState = {
   auth: {
     status: 'ANONYMOUS',
+    loggedIn: false,
     email: '',
     error: '',
   },
