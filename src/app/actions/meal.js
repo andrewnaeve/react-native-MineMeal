@@ -22,14 +22,12 @@ export const updateStarches = (starches) => {
     dispatch({ type: 'UPDATE_STARCHES', starches: starches })
   };
 };
-
 export const addMeal = (meal) => {
   return (dispatch) => {
     dispatch({ type: 'ADD_MEAL', meal: meal });
     dispatch(clearMeal());
   };
 };
-
 export const clearMeal = () => {
   return (dispatch) => {
     dispatch({ type: 'CLEAR_MEAL' });

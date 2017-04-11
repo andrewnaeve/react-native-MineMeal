@@ -11,7 +11,12 @@ const initialState = {
     vegetables: '',
     starches: '',
   },
-  cart: []
+  cart: [],
+  navigation: {
+    key: '',
+    index: 0,
+    scenes: [],
+  },
 };
 
 export default initialState;

@@ -63,13 +63,7 @@ class SignUp extends Component {
     this.props.firebaseError('');
   }
 
-  checkSubmit() {
-    {console.log('hehhfla;s')}
-  }
-
-
   handleSignUp() {
-    {console.log('asdf;lkjasdf')};
     this.props.signUp(this.state.email.trim().toLowerCase(), this.state.password)
   }
 

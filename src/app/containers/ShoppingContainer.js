@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { addMeal } from '../actions/actions';
+import { addMeal } from '../actions/meal';
 import ShoppingIcon from '../components/ShoppingIcon';
 
 const mapStateToProps = ({ cart }) => {

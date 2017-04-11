@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { updateProtein,
          updateProteinFlavors,
          updateVegetables,
-         updateStarches, addMeal } from '../actions/actions';
+         updateStarches, addMeal } from '../actions/meal';
 import Selector from '../components/Selector';
 
 const mapStateToProps = ({ currentMeal }) => {

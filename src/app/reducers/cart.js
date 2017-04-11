@@ -7,7 +7,7 @@ const cart = (state = initialState.cart, action ) => {
       return [...state, action.meal];
     default:
       return state;
-  }
+  };
 };
 
 export default cart;

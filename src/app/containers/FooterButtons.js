@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { addMeal } from '../actions/actions';
+import { addMeal } from '../actions/meal';
 import FooterButtons from '../components/ui/FooterButtons';
 
 const mapStateToProps = ({ currentMeal, cart }) => {

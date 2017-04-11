@@ -5,7 +5,6 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
 import { store } from './src/app/store';
 import Main from './src/app/containers/MainContainer';
-import { startListeningToAuthChanges } from './src/app/actions/auth';
 
 import Loading from './src/app/components/Loading';
 
@@ -63,8 +62,6 @@ class AppContainer extends React.Component {
     this.setState({appIsReady: true});
   }
 }
-
-// store.dispatch(startListeningToAuthChanges());
 
 export default AppContainer;
 
