@@ -9,7 +9,8 @@
     "react-native-scripts": "0.0.26",
     "react-test-renderer": "~15.4.1",
     "redux-logger": "^3.0.1",
-    "remote-redux-devtools-on-debugger": "^0.7.0"
+    "remote-redux-devtools-on-debugger": "^0.7.0",
+    "remote-redux-devtools": "^0.5.7"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
@@ -31,6 +32,7 @@
     "react-native": "0.42.3",
     "react-native-linear-gradient": "^2.0.0",
     "react-native-vector-icons": "^4.0.0",
+    "react-navigation": "^1.0.0-beta.7",
     "react-redux": "^5.0.3",
     "redux-actions": "^2.0.1",
     "redux-thunk": "^2.2.0"
