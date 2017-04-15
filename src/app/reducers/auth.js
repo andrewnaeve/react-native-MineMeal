@@ -2,7 +2,6 @@ import { ATTEMPTING_LOGIN, SIGN_IN, SIGN_OUT, FIREBASE_ERROR } from '../actions/
 import initialState from '../../initial-state';
 
 export default function auth(state = initialState.auth, action) {
-
   switch(action.type) {
     case 'ATTEMPTING_LOGIN':
       return {
@@ -26,5 +25,5 @@ export default function auth(state = initialState.auth, action) {
       }
     default:
       return state;
-  } 
-}
+  }; 
+};

@@ -3,13 +3,13 @@ import { View } from 'react-native';
 import Order from './Order';
 import Entry from './components/Entry';
 import Loading from './components/Loading';
-import { Stack } from './config/router';
+import { Login } from './config/router';
 
 const Main = () => {
 	return (
-      <View style={styles.container}>
-          <Stack />
-      </View>
+    <View style={styles.container}>
+      <Login />
+    </View>
 	);
 };
 

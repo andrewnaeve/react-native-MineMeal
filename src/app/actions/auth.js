@@ -1,3 +1,4 @@
+import { AsyncStorage } from 'react-native';
 import { createAction } from 'redux-actions';
 import { auth } from '../firebase';
 
@@ -9,6 +10,7 @@ export const signIn = (email, password) => {
     dispatch({ type: 'ATTEMPTING_LOGIN' });
     auth.signInWithEmailAndPassword(email, password)
     .then(function(user) {
+      AsyncStorage.setItem('user_data', JSON.stringify(user));
       dispatch(signedIn(user))
       console.log('the user is', user)
     })
@@ -29,6 +31,7 @@ export const signUp = (email, password) => {
     auth.createUserWithEmailAndPassword(email, password)
     .then(function(user) {
       console.log('the user is', user);
+      AsyncStorage.setItem('user_data', JSON.stringify(user));
       dispatch(signedIn(user));
     })
     .catch(function(error) {
@@ -51,6 +54,7 @@ export const firebaseError = (error) => {
 export const signOut = () => {
   return (dispatch) => {
     dispatch({ type: 'ATTEMPTING_LOGIN' });
+    AsyncStorage.setItem('user_data', null);
     auth.signOut();
   };
 };

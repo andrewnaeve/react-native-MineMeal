@@ -1,19 +1,21 @@
 import React from 'react';
 import { StackNavigator } from 'react-navigation';
-
 import Entry from '../components/Entry';
 import SignIn from '../containers/SignInContainer';
 import SignUp from '../containers/SignUpContainer';
 
-export const Stack = StackNavigator({
+export const Login = StackNavigator({
   Entry: {
     screen: Entry
   },
   SignIn: {
-    screen: SignIn
+    screen: SignIn,
   },
   SignUp: {
     screen: SignUp
   }
-},
-{ headerMode: 'screen' })
+}, {
+    mode: 'modal',
+    headerMode: 'none'  
+  }
+);

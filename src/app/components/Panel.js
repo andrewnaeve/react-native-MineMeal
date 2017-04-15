@@ -8,39 +8,39 @@ import { height, width, containerWidth, block, RStyles } from '../assets/styles/
 
 export default class Panel extends Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      modalVisible: false,
-    }
-  }
+	constructor(props) {
+		super(props);
+		this.state = {
+			modalVisible: false,
+		};
+	}
 
-  handlePress() {
-    this.setState({
-      modalVisible: true,
-    })
-  }
+	handlePress() {
+		this.setState({
+			modalVisible: true,
+		});
+	}
 
-  handleChoice(choice) {
-    this.props.handleChoice(choice)
-    this.setState({
-      modalVisible: !this.state.modalVisible
-    })
-  }
+	handleChoice(choice) {
+		this.props.handleChoice(choice);
+		this.setState({
+			modalVisible: !this.state.modalVisible
+		});
+	}
 
-  render() {
-    return (
+	render() {
+		return (
       <TouchableOpacity style={[RStyles.b1, this.props.color, styles.container]} onPress={this.handlePress.bind(this)}>
         <MenuModal visible={this.state.modalVisible} color={this.props.color} menu={this.props.menu} handleChoice={this.handleChoice.bind(this)}/>
         {this.props.children}
       </TouchableOpacity>
-    )
-  }
-};
+		);
+	}
+}
 
 const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  }
+	container: {
+		justifyContent: 'center',
+		alignItems: 'center',
+	}
 });

@@ -23,14 +23,14 @@ export default OrderHead;
 const { height, width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({ 
-  container: {
-    width: containerWidth,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-  },
-  center: {
-    alignItems: 'center',
-    paddingTop: 70,
-    marginTop: -20,
-  }
-})
+	container: {
+		width: containerWidth,
+		flexDirection: 'row',
+		justifyContent: 'flex-end',
+	},
+	center: {
+		alignItems: 'center',
+		paddingTop: 70,
+		marginTop: -20,
+	}
+});
