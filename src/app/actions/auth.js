@@ -71,16 +71,3 @@ const signedOut = (user) => {
     type: 'SIGN_OUT'
   };
 };
-
-// export const startListeningToAuthChanges = () => {
-//   return (dispatch) => {
-//     auth.onAuthStateChanged((user) => {
-//       if(user) {
-//         dispatch(signedIn(user));
-//         console.log('usser', user);
-//       } else {
-//         dispatch(signedOut())
-//       };
-//     });
-//   };
-// };

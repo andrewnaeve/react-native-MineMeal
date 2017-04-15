@@ -5,19 +5,17 @@ import { Components } from 'expo';
 const { LinearGradient } = Components;
 import * as stylings from '../../assets/styles/style'; 
 
-const PairButtons = (props) => {
-  return(
-    <TouchableOpacity activeOpacity={.7} onPress={props.onPress}>
-      <LinearGradient
-        colors={['#fcb755', '#fcaa58', '#fca226']}
-        style={styles.button}>
-        <Text style={styles.text}>
-          {props.children}
-        </Text>
-      </LinearGradient>
-    </TouchableOpacity>
-  );
-};
+const PairButtons = (props) => (
+  <TouchableOpacity activeOpacity={.7} onPress={props.onPress}>
+    <LinearGradient
+      colors={['#fcb755', '#fcaa58', '#fca226']}
+      style={styles.button}>
+      <Text style={styles.text}>
+        {props.children}
+      </Text>
+    </LinearGradient>
+  </TouchableOpacity>
+);
 
 
 export default PairButtons;

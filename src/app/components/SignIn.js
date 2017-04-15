@@ -9,7 +9,6 @@ import { StyleSheet,
           Modal,
           LayoutAnimation } from 'react-native';
 import { Components } from 'expo';
-
 import { auth } from '../firebase';
 import LoginButton from './ui/LoginButton';
 
@@ -84,7 +83,7 @@ class SignIn extends Component {
               <View>
                 <Text style={styles.errorText}>{this.props.auth.error}</Text>
               </View>
-              
+
               <View style={styles.form}>
                 <View style={styles.wrap}>
                   <TextInput style={styles.input} keyboardType={'email-address'} placeholder="Email" onChangeText={(text) => this.setState({email: text})}/>

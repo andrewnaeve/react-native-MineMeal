@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, AsyncStorage } from 'react-native';
 import Order from './Order';
 import Entry from './components/Entry';
 import Loading from './components/Loading';
 import { Login } from './config/router';
+import { connect } from 'react-redux';
+import { appIsReady, signedIn } from './actions/actions';
 
 function cacheImages(images) {
   return images.map(image => {
@@ -17,22 +19,41 @@ function cacheImages(images) {
 
 function cacheFonts(fonts) {
   return fonts.map(font => Expo.Font.loadAsync(font));
-}
+};
 
 class Main extends Component {
   constructor(props) {
     super(props)
   }
-
-  state = {
-    appIsReady: false,
+  
+  checkLogInStatus() {
+    console.log('checking...');
+    AsyncStorage.getItem('user_data').then((user_data_json) => {
+      let user_data = JSON.parse(user_data_json);
+      if (user_data != null) {
+        app.authWithCustomToken(user_data.token, (error, authData) => {
+          if (error) {
+            console.log(error)
+          } else {
+            this.props.signedIn(authData)
+          }
+        });
+      } else {
+        console.log('nope')
+        console.log(this.props.appIsReady)
+      }
+    });
   }
 
   componentWillMount() {
     this._loadAssetsAsync();
+    this.checkLogInStatus();
+
   }
+
   render() {
-    // if (!this.state.appIsReady) {
+    console.log('ads', this.props.appIsReady)
+    // if (!this.props.appIsReady) {
     //   return <Loading />;
     // }
     return (
@@ -41,6 +62,7 @@ class Main extends Component {
       </View>
     );
   }
+
 
   async _loadAssetsAsync() {
     const imageAssets = cacheImages([
@@ -52,16 +74,28 @@ class Main extends Component {
       require('./assets/img/vegetables.png'),
       require('./assets/img/starches.png'),
     ]);
-
     await Promise.all([
       ...imageAssets,
     ]);
+    this.props.appIsReady();
 
-    this.setState({appIsReady: true});
   }
 };
 
-export default Main;
+const mapStateToProps = ({ appIsReady, auth }) => {
+  return { appIsReady, auth }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    appReady() { dispatch(appReady()); },
+    signedIn(user) { dispatch(signedIn(user)); }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
+
+
 
 const styles = {
 	container: {
