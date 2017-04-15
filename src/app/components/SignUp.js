@@ -16,6 +16,12 @@ import Icon from 'react-native-vector-icons/Ionicons';
 const { LinearGradient } = Components;
 
 class SignUp extends Component {
+  
+  static navigationOptions = {
+    header: {
+      visible: false,
+    }
+  }
 
   constructor(props) {
     super(props);
@@ -59,7 +65,7 @@ class SignUp extends Component {
   }
 
   back() {
-    this.props.closeSignUp();
+    this.props.navigation.goBack();
     this.props.firebaseError('');
   }
 
@@ -82,9 +88,7 @@ class SignUp extends Component {
 
   render() {
     return (
-      <Modal animationType={"fade"}
-             transparent={false}
-             visible={this.props.visible}>
+
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={{height: this.state.visibleHeight}}>
           <LinearGradient style={styles.container} colors={['#F7F7F7', '#F7F7F7', '#FF5B37']}>
 
@@ -138,7 +142,7 @@ class SignUp extends Component {
               </TouchableOpacity>
             </LinearGradient>
           </TouchableWithoutFeedback>
-      </Modal>
+
     )
   };
 };

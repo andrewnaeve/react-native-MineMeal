@@ -3,12 +3,12 @@ import { View } from 'react-native';
 import Order from './Order';
 import Entry from './components/Entry';
 import Loading from './components/Loading';
+import { Stack } from './config/router';
 
-const Main = ({ auth }) => {
+const Main = () => {
 	return (
       <View style={styles.container}>
-          {auth.loggedIn ? <Order /> : <Entry />}
-          
+          <Stack />
       </View>
 	);
 };

@@ -6,87 +6,60 @@ import { StyleSheet,
           Image, 
           TouchableOpacity, 
           LayoutAnimation } from 'react-native';
+
 import { Components } from 'expo';
+const { LinearGradient } = Components;
 
 import SignUp from '../containers/SignUpContainer';
 import SignIn from '../containers/SignInContainer';
-
-
-import firebase from '../firebase';
+import LogInButtons from './ui/LogInButtons';
 
 import * as stylings from '../assets/styles/style'; 
-import Icon from 'react-native-vector-icons/Ionicons';
-const { LinearGradient } = Components;
 
 export default class Entry extends Component {
 
+  static navigationOptions = {
+    header: {
+      visible: false,
+    }
+  }
+
   constructor(props) {
     super(props)
-    this.state = {
-      signInVisible: false,
-      signUpVisible: false,
-    };
+
+    this.signInNav = this.signInNav.bind(this);
+    this.signUpNav = this.signUpNav.bind(this);
     
   };
 
-  handleSignIn() {
-    this.setState({
-      signInVisible: true,
-    });
-  };
 
-  handleSignUp() {
-    this.setState({
-      signUpVisible: true,
-    });
-  };
+  signInNav() {
+    this.props.navigation.navigate('SignIn');
+  }
+  signUpNav() {
+    this.props.navigation.navigate('SignUp');
+  }
 
-  closeSignIn() {
-    this.setState({
-      signInVisible: false
-    });
-  };
-
-  closeSignUp() {
-    this.setState({
-      signUpVisible: false
-    });
-  };
 
   render() {
     return (
 
-        <LinearGradient style={styles.container} colors={['#F7F7F7', '#F7F7F7', '#FF5B37']}>
-          <Image style={styles.logo} source={require("../assets/img/mine_final.png")}/>
-            <View style={styles.outer}>
-              <View style={styles.inner}>
+      <LinearGradient style={styles.container} colors={['#F7F7F7', '#F7F7F7', '#FF5B37']}>
+        <Image style={styles.logo} source={require("../assets/img/mine_final.png")}/>
+          <View style={styles.outer}>
+            <View style={styles.inner}>
 
-                <TouchableOpacity activeOpacity={.7} onPress={this.handleSignIn.bind(this)}>
-                  <SignIn visible={this.state.signInVisible} closeSignIn={this.closeSignIn.bind(this)} />
-                  <LinearGradient
-                    colors={['#fcb755', '#fcaa58', '#fca226']}
-                    style={styles.button}>
-                    <Text style={styles.text}>
-                      Sign In
-                    </Text>
-                  </LinearGradient>
-                </TouchableOpacity>
+              <LogInButtons onPress={this.signInNav}>
+                Sign In
+              </LogInButtons>
 
-                <TouchableOpacity activeOpacity={.7} onPress={this.handleSignUp.bind(this)}>
-                  <SignUp visible={this.state.signUpVisible} closeSignUp={this.closeSignUp.bind(this)} />
-                  <LinearGradient
-                    colors={['#fcb755', '#fcaa58', '#fca226']}
-                    style={styles.button}>
-                    <Text style={styles.text}>
-                      Sign Up
-                    </Text>
-                  </LinearGradient>
-                </TouchableOpacity>            
+              <LogInButtons onPress={this.signUpNav}>
+                Sign Up
+              </LogInButtons>
 
-              </View>
             </View>
-
-          </LinearGradient>
+          </View>
+        </LinearGradient>
     );
   };
 };

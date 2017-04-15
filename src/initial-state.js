@@ -11,7 +11,8 @@ const initialState = {
     vegetables: '',
     starches: '',
   },
-  cart: []
+  cart: [],
+
 };
 
 export default initialState;

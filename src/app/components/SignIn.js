@@ -18,6 +18,12 @@ const { LinearGradient } = Components;
 
 class SignIn extends Component {
 
+    static navigationOptions = {
+    header: {
+      visible: false,
+    }
+  }
+
   constructor(props) {
     super(props);
     this.state = ({
@@ -26,7 +32,7 @@ class SignIn extends Component {
       visibleHeight: height,
       topLogo: {height: 300, width: 300},
     })
-    console.log('eerr', props.auth.error)
+
     this.handleSignIn = this.handleSignIn.bind(this)
   }
 
@@ -61,7 +67,7 @@ class SignIn extends Component {
   };
 
   back() {
-    this.props.closeSignIn()
+    this.props.navigation.goBack();
     this.props.firebaseError('')
   };
 
@@ -71,10 +77,7 @@ class SignIn extends Component {
 
   render() {
     return (
-      <Modal animationType={"fade"}
-             transparent={false}
-             visible={this.props.visible}>
-      
+     
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={{height: this.state.visibleHeight}}>
           <LinearGradient style={styles.container} colors={['#F7F7F7', '#F7F7F7', '#FF5B37']}>
 
@@ -114,7 +117,6 @@ class SignIn extends Component {
               </TouchableOpacity>
             </LinearGradient>
           </TouchableWithoutFeedback>
-      </Modal>
     )
   };
 };

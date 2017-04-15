@@ -5,10 +5,11 @@ import auth from './auth';
 import currentMeal from './menu';
 import cart from './cart';
 
+
 const rootReducer = combineReducers({ 
   auth,
   currentMeal,
-  cart
+  cart,
 });
 
 export default rootReducer;

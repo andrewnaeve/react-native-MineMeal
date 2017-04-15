@@ -34,9 +34,9 @@ class AppContainer extends React.Component {
   }
 
   render() {
-    if (!this.state.appIsReady) {
-      return <Loading />;
-    }
+    // if (!this.state.appIsReady) {
+    //   return <Loading />;
+    // }
 
     return (
       <Provider store={store}>
