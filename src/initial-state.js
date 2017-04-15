@@ -12,7 +12,7 @@ const initialState = {
     starches: '',
   },
   cart: [],
-
+  appIsReady: false,
 };
 
 export default initialState;

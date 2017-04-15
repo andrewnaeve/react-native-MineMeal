@@ -10,5 +10,9 @@ export const ALLOW_MEAL = 'ALLOW_MEAL';
 export const SIGN_IN = 'SIGN_IN';
 export const SIGN_OUT = 'SIGN_OUT';
 export const SIGN_UP = 'SIGN_UP';
+
 export const ATTEMPTING_LOGIN = 'ATTEMPTING_LOGIN';
 export const FIREBASE_ERROR = 'FIREBASE_ERROR';
+
+export const APP_IS_READY = 'APP_IS_READY';
+export const LOGGED_IN = 'LOGGED_IN';
