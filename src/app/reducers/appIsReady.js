@@ -4,8 +4,7 @@ import initialState from '../../initial-state';
 const appIsReady = (state = initialState.appIsReady, action) => {
   switch(action.type) {
     case APP_READY:
-      return [...state];
-      
+      return true;   
     default:
       return state;
   }

@@ -5,7 +5,7 @@ import Entry from './components/Entry';
 import Loading from './components/Loading';
 import { Login } from './config/router';
 import { connect } from 'react-redux';
-import { appIsReady, signedIn } from './actions/actions';
+import { appReady } from './actions/appReady';
 
 function cacheImages(images) {
   return images.map(image => {
@@ -22,8 +22,10 @@ function cacheFonts(fonts) {
 };
 
 class Main extends Component {
+
   constructor(props) {
     super(props)
+
   }
   
   checkLogInStatus() {
@@ -40,7 +42,6 @@ class Main extends Component {
         });
       } else {
         console.log('nope')
-        console.log(this.props.appIsReady)
       }
     });
   }
@@ -48,14 +49,14 @@ class Main extends Component {
   componentWillMount() {
     this._loadAssetsAsync();
     this.checkLogInStatus();
-
+    this.props.appReady();
   }
 
   render() {
     console.log('ads', this.props.appIsReady)
-    // if (!this.props.appIsReady) {
-    //   return <Loading />;
-    // }
+    if (!this.props.appIsReady) {
+      return <Loading />;
+    }
     return (
       <View style={styles.container}>
         <Login />
@@ -65,6 +66,7 @@ class Main extends Component {
 
 
   async _loadAssetsAsync() {
+    let that = this;
     const imageAssets = cacheImages([
       require('./assets/img/mine_final_logo.png'),
       require('./assets/img/mine_final.png'),
@@ -77,25 +79,11 @@ class Main extends Component {
     await Promise.all([
       ...imageAssets,
     ]);
-    this.props.appIsReady();
-
+    this.props.appReady();
   }
 };
 
-const mapStateToProps = ({ appIsReady, auth }) => {
-  return { appIsReady, auth }
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    appReady() { dispatch(appReady()); },
-    signedIn(user) { dispatch(signedIn(user)); }
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
-
-
+export default Main;
 
 const styles = {
 	container: {

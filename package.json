@@ -8,9 +8,11 @@
     "jest-expo": "^0.3.0",
     "react-native-scripts": "0.0.26",
     "react-test-renderer": "~15.4.1",
+    "reactotron-react-native": "^1.9.1",
+    "reactotron-redux": "^1.9.1",
     "redux-logger": "^3.0.1",
-    "remote-redux-devtools-on-debugger": "^0.7.0",
-    "remote-redux-devtools": "^0.5.7"
+    "remote-redux-devtools": "^0.5.7",
+    "remote-redux-devtools-on-debugger": "^0.7.0"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
@@ -18,8 +20,7 @@
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
-    "test": "node node_modules/jest/bin/jest.js --watch",
-    "postinstall": "remotedev-debugger"
+    "test": "node node_modules/jest/bin/jest.js --watch"
   },
   "jest": {
     "preset": "jest-expo"

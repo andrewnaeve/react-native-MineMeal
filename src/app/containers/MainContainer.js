@@ -1,8 +1,18 @@
 import { connect } from 'react-redux';
 import Main from '../Main';
+import { appReady } from '../actions/appReady';
+import { signedIn } from '../actions/auth';
 
-const mapStateToProps = ({ auth }) => {
-  return { auth }
+
+const mapStateToProps = ({ auth, appIsReady }) => {
+  return { auth, appIsReady }
 };
 
-export default connect(mapStateToProps)(Main);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signedIn(user) { dispatch(signedIn(user)); },
+    appReady() { dispatch(appReady()); },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

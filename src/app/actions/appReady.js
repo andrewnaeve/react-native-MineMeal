@@ -1,7 +1,7 @@
 import { APP_READY } from './types';
 
-export const appReady = (bool) => {
+export const appReady = () => {
   return (dispatch) => {
-    dispatch({ type: 'APP_IS_READY' })
+    dispatch({ type: 'APP_READY' })
   };
 };
