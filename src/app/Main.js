@@ -6,6 +6,8 @@ import Loading from './components/Loading';
 import { Login } from './config/router';
 import { connect } from 'react-redux';
 import { appReady } from './actions/appReady';
+import { signIn } from './actions/auth';
+import { auth } from './firebase';
 
 function cacheImages(images) {
   return images.map(image => {
@@ -28,34 +30,42 @@ class Main extends Component {
 
   }
   
-  checkLogInStatus() {
-    console.log('checking...');
-    AsyncStorage.getItem('user_data').then((user_data_json) => {
-      let user_data = JSON.parse(user_data_json);
-      if (user_data != null) {
-        app.authWithCustomToken(user_data.token, (error, authData) => {
-          if (error) {
-            console.log(error)
-          } else {
-            this.props.signedIn(authData)
-          }
-        });
-      } else {
-        console.log('nope')
-      }
-    });
+  async checkLogInStatus () {
+    let user_data = await AsyncStorage.getItem('user_data');
+    let user = JSON.parse(user_data)
+    if (user != null) {
+      this.props.signIn(user.email, user.password);
+    } else {
+      console.log('nope')
+    }
+  }
+
+
+  async checking() {
+    try {
+      await this.checkLogInStatus()
+    } catch(error) {
+      console.log(error)
+    }
   }
 
   componentWillMount() {
-    this._loadAssetsAsync();
-    this.checkLogInStatus();
-    this.props.appReady();
+    var that = this;
+    this.checkLogInStatus()
+    this._loadAssetsAsync()
+      .then(
+        setTimeout(function() {
+          that.props.appReady()
+        }, 3000)
+      )
   }
 
   render() {
-    console.log('ads', this.props.appIsReady)
     if (!this.props.appIsReady) {
       return <Loading />;
+    }
+    if(!this.props.auth.loggedIn && this.props.appIsReady) {
+      return <Login />;
     }
     return (
       <View style={styles.container}>
@@ -66,7 +76,6 @@ class Main extends Component {
 
 
   async _loadAssetsAsync() {
-    let that = this;
     const imageAssets = cacheImages([
       require('./assets/img/mine_final_logo.png'),
       require('./assets/img/mine_final.png'),
@@ -76,10 +85,11 @@ class Main extends Component {
       require('./assets/img/vegetables.png'),
       require('./assets/img/starches.png'),
     ]);
+
     await Promise.all([
       ...imageAssets,
-    ]);
-    this.props.appReady();
+    ])
+    
   }
 };
 

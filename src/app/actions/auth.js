@@ -5,12 +5,12 @@ import { auth } from '../firebase';
 import { ATTEMPTING_LOGIN, FIREBASE_ERROR, SIGN_IN, SIGN_OUT } from './types';
 
 export const signIn = (email, password) => {
+ console.log('yeppp')
   return (dispatch) => {
-
     dispatch({ type: 'ATTEMPTING_LOGIN' });
     auth.signInWithEmailAndPassword(email, password)
     .then(function(user) {
-      AsyncStorage.setItem('user_data', JSON.stringify(user));
+      AsyncStorage.setItem('user_data', JSON.stringify({email: email, password: password}))
       dispatch(signedIn(user))
       console.log('the user is', user)
     })
@@ -30,8 +30,8 @@ export const signUp = (email, password) => {
     dispatch({ type: 'ATTEMPTING_LOGIN' });
     auth.createUserWithEmailAndPassword(email, password)
     .then(function(user) {
-      console.log('the user is', user);
-      AsyncStorage.setItem('user_data', JSON.stringify(user));
+      console.log('the user is', JSON.stringify(user));
+      AsyncStorage.setItem('user_data', JSON.stringify({email: email, password: password}))
       dispatch(signedIn(user));
     })
     .catch(function(error) {

@@ -11,6 +11,5 @@ import firebase from 'firebase';
 
 firebase.initializeApp(config);
 
-
 export const auth = firebase.auth();
 export default firebase;
