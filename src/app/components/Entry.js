@@ -66,7 +66,7 @@ const styles = {
 	},
 	inner: {
 		width: stylings.width * .90,
-		justifyContent: 'space-around',
+		justifyContent: 'space-between',
 		flexDirection: 'row',
 	},
 	outer: {

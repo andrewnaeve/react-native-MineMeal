@@ -7,20 +7,20 @@ import { ATTEMPTING_LOGIN, FIREBASE_ERROR, SIGN_IN, SIGN_OUT } from './types';
 export const signIn = (email, password) => {
   return (dispatch) => {
     dispatch({ type: 'ATTEMPTING_LOGIN' });
-    // auth.signInWithEmailAndPassword(email, password)
-    // .then(function(user) {
-    //   AsyncStorage.setItem('user_data', JSON.stringify({email: email, password: password}))
-    //   dispatch(signedIn(user))
-    //   console.log('the user is', user)
-    // })
-    // .catch(function(error) {
-    //   let errorCode = error.code;
-    //   let errorMessage = error.message;
-    //   console.log(error)
-    //   dispatch({ type: 'ANONYMOUS' });
-    //   dispatch(firebaseError(errorMessage));
-    //   }
-    // );
+    auth.signInWithEmailAndPassword(email, password)
+    .then(function(user) {
+      AsyncStorage.setItem('user_data', JSON.stringify({email: email, password: password}))
+      dispatch(signedIn(user))
+      console.log('the user is', user)
+    })
+    .catch(function(error) {
+      let errorCode = error.code;
+      let errorMessage = error.message;
+      console.log(error)
+      dispatch({ type: 'ANONYMOUS' });
+      dispatch(firebaseError(errorMessage));
+      }
+    );
   };
 };
 
