@@ -3,6 +3,11 @@ import { View, Text, StyleSheet, Dimensions, Image, Modal, ListView, TouchableOp
 import { width, height, containerWidth } from '../assets/styles/style';
 import { connect } from 'react-redux';
 import { auth } from '../firebase';
+import Icon from 'react-native-vector-icons/Ionicons';
+
+Checkout = (props) => (
+    <Icon style={styles.icon} name="md-cart" size={50} color="white" />
+);
 
 class CartModal extends Component {
 
@@ -40,7 +45,7 @@ class CartModal extends Component {
         visible={this.props.visible}>
         <View style={styles.container}>
           <View style={styles.header}>
-            <Text style={styles.text}>Cart</Text>
+            <Checkout />
           </View>
           <ListView
               dataSource={this.state.dataSource}
@@ -80,6 +85,10 @@ const styles = StyleSheet.create({
     height: height * .15,
     backgroundColor: 'red',
     justifyContent: 'center',
+    alignItems: 'center',
+    borderBottom: StyleSheet.hairlineWidth,
+    borderColor: '#8E8E8E',
+
   },
   text: {
     alignSelf: 'center',
@@ -94,5 +103,8 @@ const styles = StyleSheet.create({
   close: {
     fontSize: 25,
     color: 'red',
-  }
+  },
+  icon: {
+    marginTop: 10,
+  },
 })
