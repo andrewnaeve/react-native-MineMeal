@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { View, Text, StyleSheet, Dimensions, Image, Modal, ListView, TouchableOpacity } from 'react-native';
 import { width, height, containerWidth } from '../assets/styles/style';
-import { connect } from 'react-redux';
 import { auth } from '../firebase';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -18,6 +18,8 @@ class CartModal extends Component {
       dataSource: ds.cloneWithRows(''),
     };
     this.handlePress = this.handlePress.bind(this);
+    this.handleSignOut == this.handleSignOut.bind(this);
+
   };
 
   componentWillReceiveProps(props) {
@@ -30,11 +32,11 @@ class CartModal extends Component {
 
   handlePress() {
     this.props.closeModal()
-    {console.log(this.props.cart)}
+
   };
 
   handleSignOut() {
-    auth.signOut();
+    this.props.signOut()
   };
 
   render() {
@@ -60,21 +62,14 @@ class CartModal extends Component {
               
               />
           <TouchableOpacity onPress={this.handlePress}><Text style={styles.close}>Close</Text></TouchableOpacity>
-          <TouchableOpacity onPress={this.handleSignOut}><Text style={styles.close}>sign out</Text></TouchableOpacity>
+          <TouchableOpacity onPress={this.handleSignOut.bind(this)}><Text style={styles.close}>sign out</Text></TouchableOpacity>
         </View>
       </Modal> 
     );
   };
 };
 
-const mapStateToProps = (state) => {
-  return {
-    cart: state.cart,
-    log: state.auth
-  };
-};
-
-export default connect(mapStateToProps)(CartModal);
+export default CartModal;
 
 const styles = StyleSheet.create({
   container: {
@@ -86,9 +81,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
     justifyContent: 'center',
     alignItems: 'center',
-    borderBottom: StyleSheet.hairlineWidth,
-    borderColor: '#8E8E8E',
-
   },
   text: {
     alignSelf: 'center',

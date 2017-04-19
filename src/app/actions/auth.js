@@ -5,7 +5,6 @@ import { auth } from '../firebase';
 import { ATTEMPTING_LOGIN, FIREBASE_ERROR, SIGN_IN, SIGN_OUT } from './types';
 
 export const signIn = (email, password) => {
- console.log('yeppp')
   return (dispatch) => {
     dispatch({ type: 'ATTEMPTING_LOGIN' });
     auth.signInWithEmailAndPassword(email, password)
@@ -52,9 +51,10 @@ export const firebaseError = (error) => {
 };
 
 export const signOut = () => {
+  console.log('heee')
   return (dispatch) => {
     dispatch({ type: 'ATTEMPTING_LOGIN' });
-    AsyncStorage.setItem('user_data', null);
+    AsyncStorage.removeItem('user_data');
     auth.signOut();
   };
 };

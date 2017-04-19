@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions, Image, TouchableOpacity } from 'react-native';
 import Logo from './Logo';
-import CartModal from './CartModal';
+import CartModal from '../containers/CartModalContainer';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { containerWidth } from '../assets/styles/style';
-
+import { signOut } from '../actions/auth';
 Cart = (props) => (
-    <Icon style={styles.icon} name="md-cart" size={35} color="#00bff3" />
+    <Icon style={styles.icon} name="md-cart" size={40} color="#00bff3" />
 );
 
 
@@ -54,6 +54,8 @@ const styles = StyleSheet.create({
     height: 50,
     width: 50,
     marginRight: 10,
+    marginBottom: 20,
+
   },
   icon: {
     position: 'absolute',
