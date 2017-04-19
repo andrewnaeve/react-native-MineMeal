@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import { connect } from 'react-redux';
 import Logo from './components/Logo';
 import OrderHead from './components/OrderHead';
@@ -15,11 +15,11 @@ export default class Order extends Component {
 
   render() {
     return(
-      <View style={styles.container}>
+      <Image source={require('./assets/img/veggies.jpg')} style={styles.container}>
         <OrderHead />
         <Selector navigation={this.props.navigation} />
         <FooterButtons />
-      </View>
+      </Image>
     )
   }
 }
@@ -29,6 +29,7 @@ export default class Order extends Component {
 const styles = {
   container: {
     flex: 1,
-    backgroundColor: 'white',  
+    width: null,
+    height: null,
   }
 }

@@ -5,11 +5,10 @@ import CartModal from './CartModal';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { containerWidth } from '../assets/styles/style';
 
-function Cart(props) {
-  return (
-    <Icon style={styles.icon} name="md-cart" size={30} color="#00bff3" />
-    );
-};
+Cart = (props) => (
+    <Icon style={styles.icon} name="md-cart" size={35} color="#00bff3" />
+);
+
 
 class ShoppingIcon extends Component {
    constructor(props) {
@@ -60,6 +59,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 10,
     top: 10,
+    backgroundColor: 'transparent',
   },
   circle: {
     position: 'absolute',

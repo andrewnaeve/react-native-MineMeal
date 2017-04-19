@@ -87,6 +87,7 @@ class Main extends Component {
       require('./assets/img/vegetables.png'),
       require('./assets/img/starches.png'),
       require('./assets/img/dinner.png'),
+      require('./assets/img/veggies.jpg'),
     ]);
 
     await Promise.all([

@@ -14,14 +14,14 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginBottom: -60,
+    marginBottom: -40,
     marginTop: -20,
     height: height * .15,
   },
 
   logo: {
-    width: 175,
-    height: 175,
+    width: 200,
+    height: 200,
     resizeMode: 'cover',
   }
 })
