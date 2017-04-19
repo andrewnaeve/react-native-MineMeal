@@ -7,10 +7,11 @@ import { height, width, containerWidth, block, RStyles } from '../assets/styles/
 
 export default class MenuModal extends Component {
 
+
   constructor(props) {
     super()
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    const dataSource =  ds.cloneWithRows(props.menu);
+    const dataSource =  ds.cloneWithRows(props.navigation.state.params.menu);
     this.state = {
       dataSource: dataSource,
       rowCount: dataSource.getRowCount(),
@@ -18,27 +19,21 @@ export default class MenuModal extends Component {
   }
 
   handleChoice(choice) {
-    this.props.handleChoice(choice)
+    this.props.navigation.state.params.handleChoice(choice)
   }
 
   render() {
 
     return(
-      <Modal
-        animationType={"fade"}
-        transparent={false}
-        visible={this.props.visible}
-        >
         <ListView
           contentContainerStyle={styles.container}
           dataSource={this.state.dataSource}
           initialListSize={this.state.rowCount}
           renderSeparator={this._renderSeparator}
-          renderRow={(rowData) => <TouchableOpacity style={[this.props.color, styles.selector]} onPress={() => {this.handleChoice(rowData)}}>
+          renderRow={(rowData) => <TouchableOpacity style={[this.props.navigation.state.params.color, styles.selector]} onPress={() => {this.handleChoice(rowData)}}>
                                     <Text style={styles.text}>{rowData}</Text>
                                   </TouchableOpacity>}
         />
-      </Modal> 
     )    
   }
 };

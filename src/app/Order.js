@@ -8,7 +8,7 @@ import FooterButtons from './containers/FooterButtons';
 
 
 export default class Order extends Component {
-
+ 
   constructor(props) {
     super(props)
   }
@@ -17,7 +17,7 @@ export default class Order extends Component {
     return(
       <View style={styles.container}>
         <OrderHead />
-        <Selector />
+        <Selector navigation={this.props.navigation} />
         <FooterButtons />
       </View>
     )

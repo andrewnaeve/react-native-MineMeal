@@ -10,28 +10,26 @@ export default class Panel extends Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {
-			modalVisible: false,
-		};
+    console.log('sp', props.screenProps)
 	}
 
 	handlePress() {
-		this.setState({
-			modalVisible: true,
-		});
+		this.props.navigation.navigate('MenuModal', {menu: this.props.screenProps.menu,
+                                                 color: this.props.screenProps.color,
+                                                 handleChoice: this.props.screenProps.handleChoice});
 	}
 
 	handleChoice(choice) {
 		this.props.handleChoice(choice);
-		this.setState({
-			modalVisible: !this.state.modalVisible
-		});
+
 	}
 
 	render() {
 		return (
-      <TouchableOpacity style={[RStyles.b1, this.props.color, styles.container]} onPress={this.handlePress.bind(this)}>
-        <MenuModal visible={this.state.modalVisible} color={this.props.color} menu={this.props.menu} handleChoice={this.handleChoice.bind(this)}/>
+      <TouchableOpacity navigation={this.props.navigation} 
+       style={[RStyles.b1, this.props.screenProps.color, styles.container]}
+       onPress={this.handlePress.bind(this)}
+       >
         {this.props.children}
       </TouchableOpacity>
 		);
@@ -44,3 +42,4 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	}
 });
+        // <MenuModal color={this.props.color} menu={this.props.menu} handleChoice={this.handleChoice.bind(this)}/>

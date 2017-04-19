@@ -4,6 +4,7 @@ import Order from './Order';
 import Entry from './components/Entry';
 import Loading from './components/Loading';
 import { Login } from './config/router';
+import { OrderForm } from './config/router';
 import { connect } from 'react-redux';
 import { appReady } from './actions/appReady';
 import { signIn } from './actions/auth';
@@ -61,15 +62,15 @@ class Main extends Component {
   }
 
   render() {
-    if (!this.props.appIsReady) {
-      return <Loading />;
-    }
-    if(!this.props.auth.loggedIn && this.props.appIsReady) {
-      return <Login />;
-    }
+    // if (!this.props.appIsReady) {
+    //   return <Loading />;
+    // }
+    // if(!this.props.auth.loggedIn && this.props.appIsReady) {
+    //   return <Login />;
+    // }
     return (
       <View style={styles.container}>
-        <Login />
+        <OrderForm />
       </View>
     );
   }
