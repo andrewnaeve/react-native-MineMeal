@@ -7,7 +7,7 @@ import { StyleSheet,
           Modal,
           TouchableOpacity, 
           TouchableWithoutFeedback,
-          LayoutAnimation } from 'react-native';
+          LayoutAnimation, ActivityIndicator } from 'react-native';
 import { Components } from 'expo';
 import { connect } from 'react-redux';
 import LoginButton from './ui/LoginButton';
@@ -116,7 +116,7 @@ class SignUp extends Component {
 
               <LoginButton onPress={this.handleSignUp}
                           disabled={this.state.password === this.state.passwordCheck ? false : true }>
-                Sign Up
+                {this.props.auth.status === 'AWAITING_AUTH_RESPONSE' ? <ActivityIndicator animating={true} color="white"/> : <Text style={styles.text}>Sign Up</Text>}
               </LoginButton>
             </KeyboardAvoidingView>
               
@@ -187,4 +187,9 @@ const styles = {
 		top: 20,
 		left: 20,
 	},
+  text: {
+    backgroundColor: 'transparent',
+    fontSize: 20,
+    color: '#fff', 
+  },
 };

@@ -7,7 +7,7 @@ import { StyleSheet,
           TouchableOpacity, 
           TouchableWithoutFeedback,
           Modal,
-          LayoutAnimation } from 'react-native';
+          LayoutAnimation, ActivityIndicator } from 'react-native';
 import { Components } from 'expo';
 import { auth } from '../firebase';
 import LoginButton from './ui/LoginButton';
@@ -104,7 +104,7 @@ class SignIn extends Component {
 
               <LoginButton onPress={this.handleSignIn}
                            disabled={false} >
-                Sign In
+                {this.props.auth.status === 'AWAITING_AUTH_RESPONSE' ? <ActivityIndicator animating={true} color="white"/> : <Text>Sign In</Text>}
               </LoginButton>
               
 

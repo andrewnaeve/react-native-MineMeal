@@ -9,9 +9,7 @@ const LoginButton = (props) => (
     <LinearGradient
       colors={['#fcb755', '#fcaa58', '#fca226']}
       style={styles.button}>
-      <Text style={styles.text}>
         {props.children}
-      </Text>
     </LinearGradient>
   </TouchableOpacity>
 );
@@ -27,10 +25,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 15, 
     alignItems: 'center', 
-  },
-  text: {
-    backgroundColor: 'transparent',
-    fontSize: 20,
-    color: '#fff', 
-  },
+  }
 });
