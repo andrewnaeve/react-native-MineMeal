@@ -13,7 +13,6 @@ class CartModal extends Component {
       dataSource: ds.cloneWithRows(''),
     };
     this.handlePress = this.handlePress.bind(this);
-    console.log(this.props.log.signedIn)
   };
 
   componentWillReceiveProps(props) {

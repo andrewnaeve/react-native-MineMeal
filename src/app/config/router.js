@@ -29,12 +29,6 @@ export const OrderForm = StackNavigator({
   OrderForm: {
     screen: Order
   },
-  Selector: {
-    screen: Selector
-  },
-  Panel: {
-    screen: Panel
-  },
   MenuModal: {
     screen: MenuModal
   },

@@ -28,6 +28,7 @@ export default class Order extends Component {
 
 const styles = {
   container: {
-    flex: 1,       
+    flex: 1,
+    backgroundColor: 'white',  
   }
 }

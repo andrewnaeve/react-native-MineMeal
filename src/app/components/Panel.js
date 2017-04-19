@@ -10,18 +10,12 @@ export default class Panel extends Component {
 
 	constructor(props) {
 		super(props);
-    console.log('sp', props.screenProps)
 	}
 
 	handlePress() {
 		this.props.navigation.navigate('MenuModal', {menu: this.props.screenProps.menu,
                                                  color: this.props.screenProps.color,
                                                  handleChoice: this.props.screenProps.handleChoice});
-	}
-
-	handleChoice(choice) {
-		this.props.handleChoice(choice);
-
 	}
 
 	render() {

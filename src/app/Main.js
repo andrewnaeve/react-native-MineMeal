@@ -32,6 +32,7 @@ class Main extends Component {
   }
   
   async checkLogInStatus () {
+
     let user_data = await AsyncStorage.getItem('user_data');
     let user = JSON.parse(user_data)
     if (user != null) {
@@ -85,6 +86,7 @@ class Main extends Component {
       require('./assets/img/proteinFlavors.png'),
       require('./assets/img/vegetables.png'),
       require('./assets/img/starches.png'),
+      require('./assets/img/dinner.png'),
     ]);
 
     await Promise.all([

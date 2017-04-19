@@ -63,18 +63,22 @@ const styles = StyleSheet.create({
 	orangePanel: {
 		backgroundColor: '#fd980a',
 		borderColor: '#fd980a',
+    color: '#fd980a'
 	},
 	bluePanel: {
 		backgroundColor: '#00bff3',
 		borderColor: '#00bff3',
+    color: '#00bff3',
 	},
 	greenPanel: {
 		backgroundColor: '#16fc06',
 		borderColor: '#16fc06',
+    color: '#16fc06'
 	},
 	mudPanel: {
 		backgroundColor: '#dbd110',
 		borderColor: '#dbd110',
+    color: '#dbd110'
 	},
 
 });

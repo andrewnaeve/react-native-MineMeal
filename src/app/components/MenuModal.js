@@ -16,6 +16,7 @@ export default class MenuModal extends Component {
       dataSource: dataSource,
       rowCount: dataSource.getRowCount(),
     };
+    console.log('color', props.navigation.state.params.color)
   }
 
   handleChoice(choice) {
@@ -30,36 +31,56 @@ export default class MenuModal extends Component {
           contentContainerStyle={styles.container}
           dataSource={this.state.dataSource}
           initialListSize={this.state.rowCount}
-          renderSeparator={this._renderSeparator}
+          renderSeparator={(sectionId, rowId) => <View key={rowId} style={[styles.separator, this.props.navigation.state.params.color]} />}
           renderRow={(rowData) => <TouchableOpacity style={[this.props.navigation.state.params.color, styles.selector]} onPress={() => {this.handleChoice(rowData)}}>
-                                    <Text style={styles.text}>{rowData}</Text>
+                                    <View style={styles.wrapper}>
+                                      <Image source={require('../assets/img/dinner.png')} style={styles.pic} />
+                                      <Text style={styles.text}>{rowData}</Text>
+                                    </View>
                                   </TouchableOpacity>}
         />
     )    
   }
 };
 
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+
   },
   selector: {
-    
     backgroundColor: 'transparent',
-    borderRadius: 5,
-    height: 40,
-    width: containerWidth * .65,
-    borderWidth: 2,
-    marginBottom: 10,
+    height: 60,
     justifyContent: 'center',
+
+  },
+  wrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  pic: {
+    width: 40,
+    height: 40,
+    marginLeft: 20,
+    resizeMode: 'cover',
+
   },
   text: {
+    backgroundColor: 'transparent',
+    fontFamily: 'Helvetica',
+    fontSize: 15,
     paddingLeft: 10,
     paddingRight: 10,
-    textAlign: 'center',
-    fontSize: 15,
+    marginLeft: 30,
+  },
+  separator: {
+    width: containerWidth,
+    alignSelf: 'center',
+    height: StyleSheet.hairlineWidth,
+    backgroundColor: '#8E8E8E',
   }
 })
 
