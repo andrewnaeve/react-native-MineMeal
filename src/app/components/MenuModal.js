@@ -20,6 +20,7 @@ export default class MenuModal extends Component {
 
   handleChoice(choice) {
     this.props.navigation.state.params.handleChoice(choice)
+    this.props.navigation.goBack();
   }
 
   render() {

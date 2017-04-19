@@ -3,7 +3,7 @@ import { Alert, View, Text, Modal, TouchableHighlight, TouchableOpacity, StyleSh
 import { connect } from 'react-redux';
 import * as stylings from '../../assets/styles/style';
 import AddCheckout from './AddCheckout';
-
+import PairButtons from './PairButtons';
 
 
 class FooterButtons extends Component {
@@ -33,17 +33,14 @@ class FooterButtons extends Component {
       <View style={styles.container}>
         <View style={styles.inner}>
 
-          <TouchableOpacity onPress={this.handleSubmit.bind(this)} disabled={false}>
-            <AddCheckout style={styles.container}>
-              <Text style={styles.buttonText}>Add Meal</Text>
-            </AddCheckout>
-          </TouchableOpacity>
+          
+          <PairButtons onPress={this.handleSubmit.bind(this)} disabled={false}>
+            Add Meal
+          </PairButtons>
 
-          <TouchableOpacity disabled={false}>
-            <AddCheckout>
-              <Text style={styles.buttonText}>Checkout</Text>
-            </AddCheckout>
-          </TouchableOpacity>
+          <PairButtons>
+            Checkout
+          </PairButtons>
 
         </View>
       </View>
@@ -61,6 +58,7 @@ const styles = StyleSheet.create({
     width: stylings.width * .95,
     justifyContent: 'space-around',
     flexDirection: 'row',
+    marginBottom: stylings.height * .05
   },
   buttonText: {
     color: 'white',

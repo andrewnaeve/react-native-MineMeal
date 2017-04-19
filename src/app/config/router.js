@@ -40,7 +40,6 @@ export const OrderForm = StackNavigator({
   },
 
 }, {
-  mode: 'modal',
   headerMode: 'none'
 })
 
