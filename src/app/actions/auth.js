@@ -55,7 +55,7 @@ export const signOut = () => {
   return (dispatch) => {
     dispatch({ type: 'ATTEMPTING_LOGIN' });
     AsyncStorage.removeItem('user_data');
-    auth.signOut();
+    dispatch(signedOut())
   };
 };
 

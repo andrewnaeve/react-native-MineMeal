@@ -104,7 +104,7 @@ class SignIn extends Component {
 
               <LoginButton onPress={this.handleSignIn}
                            disabled={false} >
-                {this.props.auth.status === 'AWAITING_AUTH_RESPONSE' ? <ActivityIndicator animating={true} color="white"/> : <Text>Sign In</Text>}
+                {this.props.auth.status === 'AWAITING_AUTH_RESPONSE' ? <ActivityIndicator animating={true} color="white"/> : <Text style={styles.text}>Sign In</Text>}
               </LoginButton>
               
 
@@ -174,5 +174,10 @@ const styles = {
 		position: 'absolute',
 		top: 25,
 		left: 20,
-	}
+	},
+  text: {
+    backgroundColor: 'transparent',
+    fontSize: 20,
+    color: '#fff', 
+  },
 };

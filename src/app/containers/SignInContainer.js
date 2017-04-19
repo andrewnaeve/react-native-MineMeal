@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { signIn, firebaseError } from '../actions/auth';
 import SignIn from '../components/SignIn';
 
-const mapStateToProps = ({auth}) => {
+const mapStateToProps = ({ auth }) => {
   return { auth }
 };
 

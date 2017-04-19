@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Modal, TouchableHighlight, TouchableOpacity, StyleSheet, TextInput, Dimensions, Image } from 'react-native';
 import { connect } from 'react-redux';
-
 import MenuModal from './MenuModal';
 
 import { height, width, containerWidth, block, RStyles } from '../assets/styles/style'; 
