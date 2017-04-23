@@ -2,16 +2,6 @@
   "name": "minemeal",
   "version": "0.1.0",
   "private": true,
-  "devDependencies": {
-    "eslint": "^3.19.0",
-    "eslint-plugin-react": "^6.10.3",
-    "jest-expo": "^0.4.0",
-    "react-native-scripts": "0.0.28",
-    "react-test-renderer": "16.0.0-alpha.6",
-    "redux-logger": "^3.0.1",
-    "remote-redux-devtools": "^0.5.7",
-    "remote-redux-devtools-on-debugger": "^0.7.0"
-  },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
     "start": "react-native-scripts start",
@@ -30,8 +20,6 @@
     "firebase-token-generator": "^2.0.0",
     "react": "16.0.0-alpha.6",
     "react-native": "^0.43.4",
-    "react-native-firebase": "^1.0.0-alpha12",
-    "react-native-linear-gradient": "^2.0.0",
     "react-native-vector-icons": "^4.0.0",
     "react-navigation": "^1.0.0-beta.7",
     "react-redux": "^5.0.3",
@@ -40,5 +28,15 @@
     "reactotron-redux": "^1.10.0",
     "redux-actions": "^2.0.1",
     "redux-thunk": "^2.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-plugin-react": "^6.10.3",
+    "jest-expo": "^0.4.0",
+    "react-native-scripts": "0.0.28",
+    "react-test-renderer": "16.0.0-alpha.6",
+    "redux-logger": "^3.0.1",
+    "remote-redux-devtools": "^0.5.7",
+    "remote-redux-devtools-on-debugger": "^0.7.0"
   }
 }
