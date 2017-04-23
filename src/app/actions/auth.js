@@ -51,7 +51,6 @@ export const firebaseError = (error) => {
 };
 
 export const signOut = () => {
-  console.log('heee')
   return (dispatch) => {
     dispatch({ type: 'ATTEMPTING_LOGIN' });
     AsyncStorage.removeItem('user_data');
