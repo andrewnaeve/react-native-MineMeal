@@ -1,3 +1,4 @@
+import Expo from 'expo';
 import React, { Component } from 'react';
 import { View, AsyncStorage } from 'react-native';
 import Order from './Order';

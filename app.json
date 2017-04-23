@@ -1,5 +1,7 @@
 {
   "expo": {
-    "sdkVersion": "15.0.0"
+    "sdkVersion": "16.0.0",
+    "slug": "minemeal",
+    "name": "minemeal"
   }
 }
