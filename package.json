@@ -5,11 +5,9 @@
   "devDependencies": {
     "eslint": "^3.19.0",
     "eslint-plugin-react": "^6.10.3",
-    "jest-expo": "^0.3.0",
-    "react-native-scripts": "0.0.26",
-    "react-test-renderer": "~15.4.1",
-    "reactotron-react-native": "^1.9.1",
-    "reactotron-redux": "^1.9.1",
+    "jest-expo": "^0.4.0",
+    "react-native-scripts": "0.0.28",
+    "react-test-renderer": "16.0.0-alpha.6",
     "redux-logger": "^3.0.1",
     "remote-redux-devtools": "^0.5.7",
     "remote-redux-devtools-on-debugger": "^0.7.0"
@@ -27,16 +25,19 @@
   },
   "dependencies": {
     "apsl-react-native-button": "^3.0.2",
-    "expo": "^15.1.0",
+    "expo": "^16.0.0",
     "firebase": "^3.7.4",
     "firebase-token-generator": "^2.0.0",
-    "react": "~15.4.0",
-    "react-native": "0.42.3",
+    "react": "16.0.0-alpha.6",
+    "react-native": "^0.43.4",
     "react-native-firebase": "^1.0.0-alpha12",
     "react-native-linear-gradient": "^2.0.0",
     "react-native-vector-icons": "^4.0.0",
     "react-navigation": "^1.0.0-beta.7",
     "react-redux": "^5.0.3",
+    "reactotron": "^0.9.0",
+    "reactotron-react-native": "^1.10.0",
+    "reactotron-redux": "^1.10.0",
     "redux-actions": "^2.0.1",
     "redux-thunk": "^2.2.0"
   }
