@@ -81,7 +81,7 @@ class Main extends Component {
     }
     return (
       <View style={styles.container}>
-        <Login />
+        <OrderForm />
       </View>
     );
   }
