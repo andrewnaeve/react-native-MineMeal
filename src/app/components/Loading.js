@@ -3,13 +3,11 @@ import { StyleSheet, View, Image } from 'react-native';
 import { Components } from 'expo';
 import * as Styling from '../assets/styles/style';
 
-const Loading = () => {
-  return (
+const Loading = () => (
     <View style={styles.container} >
       <Image style={styles.image} source={require("../assets/img/mine_final.png")}></Image>
     </View>
-  );
-};
+);
 
 export default Loading;
 

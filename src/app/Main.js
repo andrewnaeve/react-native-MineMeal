@@ -4,6 +4,7 @@ import { View, AsyncStorage } from 'react-native';
 import Order from './Order';
 import Entry from './components/Entry';
 import Loading from './components/Loading';
+import AboutDavid from './components/about/AboutDavid';
 import { Login } from './config/router';
 import { OrderForm } from './config/router';
 import { connect } from 'react-redux';
@@ -29,7 +30,9 @@ class Main extends Component {
 
   constructor(props) {
     super(props)
-
+    this.state = {
+      ready: false
+    }
   }
   
   async checkLogInStatus () {
@@ -62,6 +65,12 @@ class Main extends Component {
         }, 3000)
       )
   }
+  componentDidMount() {
+    this.setState({
+      ready: true
+    })
+    console.log('rr')
+  }
 
   render() {
     if (!this.props.appIsReady) {
@@ -89,6 +98,7 @@ class Main extends Component {
       require('./assets/img/starches.png'),
       require('./assets/img/dinner.png'),
       require('./assets/img/veggies.jpg'),
+      require('./assets/img/david.png'),
     ]);
 
     await Promise.all([
