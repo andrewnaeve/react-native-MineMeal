@@ -39,7 +39,11 @@ export default class Entry extends Component {
 	render() {
 		return (
 
-      <LinearGradient style={styles.container} colors={['#F7F7F7', '#F7F7F7', '#FF5B37']}>
+      <View style={styles.container} >
+      <Components.Video style={styles.video} source={require('../assets/video/food-compressed.mp4')}
+                                   muted={true}
+                                   resizeMode="cover"
+                                   repeat />
         <Image style={styles.logo} source={require('../assets/img/mine_final.png')}/>
           <View style={styles.outer}>
             <View style={styles.inner}>
@@ -54,7 +58,7 @@ export default class Entry extends Component {
 
             </View>
           </View>
-        </LinearGradient>
+        </View>
 		);
 	}
 }
@@ -64,6 +68,11 @@ const styles = {
 		flex: 1,
 		alignItems: 'center',    
 	},
+  video: {
+    position: 'absolute',
+    height: stylings.height,
+    width: stylings.width,
+  },
 	inner: {
 		width: stylings.width * .90,
 		justifyContent: 'space-between',

@@ -81,7 +81,7 @@ class Main extends Component {
     }
     return (
       <View style={styles.container}>
-        <OrderForm />
+        <Login />
       </View>
     );
   }
@@ -99,6 +99,7 @@ class Main extends Component {
       require('./assets/img/dinner.png'),
       require('./assets/img/veggies.jpg'),
       require('./assets/img/david.png'),
+      require('./assets/video/food-compressed.mp4'),
     ]);
 
     await Promise.all([
