@@ -5,7 +5,6 @@ import * as stylings from '../../assets/styles/style';
 // import Icon from 'react-native-vector-icons/Ionicons';
 
 const Avatar = () => (
-
     <Image source={require("../../assets/img/david.png")} style={styles.pic}/>
 );
 

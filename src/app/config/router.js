@@ -20,7 +20,10 @@ export const Login = StackNavigator({
   }
 }, {
     mode: 'modal',
-    headerMode: 'none'  
+    headerMode: 'none',
+    navigationOptions: {
+      gesturesEnabled: true,
+    }
   }
 );
 
