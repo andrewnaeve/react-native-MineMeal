@@ -22,7 +22,7 @@ class ShoppingIcon extends Component {
   }
 
   spring() {
-    this.springValue.setValue(.75)
+    this.springValue.setValue(.70)
     Animated.spring(
       this.springValue,
       {
