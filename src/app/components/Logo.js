@@ -15,13 +15,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     marginBottom: -40,
-    marginTop: -20,
+    marginTop: -30,
     height: height * .15,
   },
 
   logo: {
-    width: 200,
-    height: 200,
+    width: 250,
+    height: 250,
     resizeMode: 'cover',
   }
 })

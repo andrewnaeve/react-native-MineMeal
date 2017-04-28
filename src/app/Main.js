@@ -62,23 +62,23 @@ class Main extends Component {
       .then(
         setTimeout(function() {
           that.props.appReady()
-        }, 3000)
+        }, 5000)
       )
   }
+  
   componentDidMount() {
     this.setState({
       ready: true
     })
-    console.log('rr')
   }
 
   render() {
-    if (!this.props.appIsReady) {
-      return <Loading />;
-    }
-    if(!this.props.auth.loggedIn && this.props.appIsReady) {
-      return <Login />;
-    }
+    // if (!this.props.appIsReady) {
+    //   return <Loading />;
+    // }
+    // if(!this.props.auth.loggedIn && this.props.appIsReady) {
+    //   return <Login />;
+    // }
     return (
       <View style={styles.container}>
         <OrderForm />

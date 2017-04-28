@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Dimensions, Image, TouchableOpacity } from 'react-native';
+import { View, Animated, Text, StyleSheet, Dimensions, Image, TouchableOpacity } from 'react-native';
 import Logo from './Logo';
 import CartModal from '../containers/CartModalContainer';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -18,20 +18,36 @@ class ShoppingIcon extends Component {
       modalVisible: false,
     };
     this.handlePress = this.handlePress.bind(this);
-  };
+    this.springValue = new Animated.Value(1);
+  }
+
+  spring() {
+    this.springValue.setValue(.75)
+    Animated.spring(
+      this.springValue,
+      {
+        toValue: 1,
+        friction: 1,
+      }
+    ).start()
+  }
 
   handlePress() {
     this.setState({
       modalVisible: true,
     });
     console.log('presss')
-  };
+  }
 
   closeModal() {
     this.setState({
       modalVisible: false
     });
-  };
+  }
+
+  componentWillReceiveProps() {
+    this.spring()
+  }
 
   render() {
     return(
@@ -39,9 +55,9 @@ class ShoppingIcon extends Component {
       <TouchableOpacity onPress={this.handlePress}>
       <CartModal visible={this.state.modalVisible} closeModal={this.closeModal.bind(this)}/>
         <Cart />
-        <View style={styles.circle}>
+        <Animated.View style={[styles.circle, {transform: [{scale: this.springValue}]} ]}>
           <Text style={styles.text}>{this.props.cart.length}</Text>
-        </View>
+        </Animated.View>
         </TouchableOpacity>
       </View>
     );

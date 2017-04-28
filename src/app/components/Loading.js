@@ -2,36 +2,34 @@ import React, { Component } from 'react';
 import { StyleSheet, Animated, Easing, View, Image } from 'react-native';
 import { Components } from 'expo';
 import * as Styling from '../assets/styles/style';
+const { LinearGradient } = Components;
 
 class Loading extends Component {
 
   constructor(props) {
     super(props);
-    this.spinValue = new Animated.Value(0)
-    this.state = {
-      grow: true
-    }
+    this.logoAnimation = new Animated.Value(0)
   }
 
   growMe() {
-    this.spinValue.setValue(0)
+    this.logoAnimation.setValue(0)
     Animated.timing(
-      this.spinValue,
+      this.logoAnimation,
       {
         toValue: 1,
-        duration: 1500,
+        duration: 1000,
         easing: Easing.linear
       }
     ).start(() => this.shrinkMe())
   }
 
   shrinkMe() {
-    this.spinValue.setValue(1)
+    this.logoAnimation.setValue(1)
     Animated.timing(
-      this.spinValue,
+      this.logoAnimation,
       {
         toValue: 0,
-        duration: 1500,
+        duration: 1000,
         easing: Easing.linear
       }
     ).start(() => this.growMe())
@@ -43,15 +41,15 @@ class Loading extends Component {
 
   render() {
 
-    const pulse = this.spinValue.interpolate({
+    const pulse = this.logoAnimation.interpolate({
       inputRange: [0, 1],
       outputRange: [.8, 1]
     })
 
     return(
-      <View style={styles.container} >
+      <LinearGradient style={styles.container} colors={['#F7F7F7', '#F7F7F7', '#FF5B37']}> 
         <Animated.Image style={[styles.image, {transform: [{scale: pulse}]} ]} source={require("../assets/img/mine_finalWORDS.png")} />
-      </View>
+      </LinearGradient>
     );
   }
 };
