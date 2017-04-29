@@ -18,7 +18,7 @@ class CartModal extends Component {
     this.state = {
       dataSource: props.cart,
     };
-    console.log('state', this.state.dataSource)
+
     this.handlePress = this.handlePress.bind(this);
     this.handleSignOut = this.handleSignOut.bind(this);
 
@@ -27,7 +27,6 @@ class CartModal extends Component {
   componentWillReceiveProps(props) {
 
     let dataSource = props.cart;
-    console.log('f', props.cart)
     this.setState({
       dataSource: dataSource,
     });
@@ -89,9 +88,9 @@ const styles = StyleSheet.create({
   },
   food: {
     flex: 1,
+    marginLeft: 20,
     marginTop: 20,
-    alignSelf: 'center',
-    width: stylings.width * .9,
+    width: stylings.width -20,
     height: stylings.height * .6,
     flexDirection: 'column',
     marginBottom: 20,

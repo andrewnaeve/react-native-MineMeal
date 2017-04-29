@@ -74,12 +74,12 @@ class Main extends Component {
   }
 
   render() {
-    // if (!this.props.appIsReady) {
-    //   return <Loading />;
-    // }
-    // if(!this.props.auth.loggedIn && this.props.appIsReady) {
-    //   return <Login />;
-    // }
+    if (!this.props.appIsReady) {
+      return <Loading />;
+    }
+    if(!this.props.auth.loggedIn && this.props.appIsReady) {
+      return <Login />;
+    }
     return (
       <View style={styles.container}>
         <OrderForm />
@@ -100,6 +100,7 @@ class Main extends Component {
       require('./assets/img/dinner.png'),
       require('./assets/img/veggies.jpg'),
       require('./assets/img/david.png'),
+      require('./assets/img/cut2.jpg'),
       require('./assets/video/food-compressed.mp4'),
     ]);
 

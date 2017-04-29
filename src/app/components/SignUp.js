@@ -78,11 +78,13 @@ class SignUp extends Component {
             </TouchableOpacity>
 
             <Image style={[styles.logo, this.state.topLogo]} source={require('../assets/img/mine_finalWORDS.png')}/>
-            
-            <KeyboardAvoidingView>
+              
               <View>
                 <Text style={styles.errorText}>{this.props.auth.error}</Text>
               </View>
+            
+            <KeyboardAvoidingView>
+
               <View style={styles.form}>
                 <View style={styles.wrap}>
                   <TextInput style={styles.input} keyboardType={'email-address'} placeholder="Email" onChangeText={(text) => this.setState({email: text})}/>

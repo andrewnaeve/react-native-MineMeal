@@ -15,7 +15,7 @@ export default class Order extends Component {
 
   render() {
     return(
-      <Image source={require('./assets/img/veggies.jpg')} style={styles.container}>
+      <Image source={require('./assets/img/cut2.jpg')} style={styles.container}>
         <OrderHead />
         <Selector navigation={this.props.navigation} />
         <FooterButtons />
