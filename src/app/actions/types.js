@@ -6,6 +6,7 @@ export const UPDATE_STARCHES = 'UPDATE_STARCHES';
 export const ADD_MEAL = 'ADD_MEAL';
 export const CLEAR_MEAL = 'CLEAR_MEAL';
 export const ALLOW_MEAL = 'ALLOW_MEAL';
+export const DELETE_MEAL = 'DELETE_MEAL';
 
 export const SIGN_IN = 'SIGN_IN';
 export const SIGN_OUT = 'SIGN_OUT';

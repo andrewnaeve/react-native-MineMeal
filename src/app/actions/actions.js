@@ -35,3 +35,9 @@ export const clearMeal = () => {
     dispatch({ type: 'CLEAR_MEAL' });
   };
 };
+
+export const deleteMeal = (index) => {
+  return (dispatch) => {
+    dispatch({ type: 'DELETE_MEAL', index: index });
+  };
+};

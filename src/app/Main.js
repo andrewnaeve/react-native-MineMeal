@@ -2,6 +2,7 @@ import Expo from 'expo';
 import React, { Component } from 'react';
 import { View, AsyncStorage } from 'react-native';
 import Order from './Order';
+import CartModal from './components/CartModal';
 import Entry from './components/Entry';
 import Loading from './components/Loading';
 import AboutDavid from './components/about/AboutDavid';
@@ -73,12 +74,12 @@ class Main extends Component {
   }
 
   render() {
-    if (!this.props.appIsReady) {
-      return <Loading />;
-    }
-    if(!this.props.auth.loggedIn && this.props.appIsReady) {
-      return <Login />;
-    }
+    // if (!this.props.appIsReady) {
+    //   return <Loading />;
+    // }
+    // if(!this.props.auth.loggedIn && this.props.appIsReady) {
+    //   return <Login />;
+    // }
     return (
       <View style={styles.container}>
         <OrderForm />

@@ -62,8 +62,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   pic: {
-    width: 40,
-    height: 40,
+    width: 50,
+    height: 50,
     marginLeft: 20,
     resizeMode: 'cover',
 

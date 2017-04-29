@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Text, StyleSheet, Dimensions, Image, Modal, ListView, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, FlatList, Dimensions, Image, Modal, ListView, TouchableOpacity } from 'react-native';
 import { width, height, containerWidth } from '../assets/styles/style';
 import { auth } from '../firebase';
 import Icon from 'react-native-vector-icons/Ionicons';
+import * as stylings from '../assets/styles/style';
+import CartItem from '../containers/CartItemContainer';
 
 Checkout = (props) => (
     <Icon style={styles.icon} name="md-cart" size={50} color="white" />
@@ -13,18 +15,19 @@ class CartModal extends Component {
 
   constructor(props) {
     super(props)
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: ds.cloneWithRows(''),
+      dataSource: props.cart,
     };
+    console.log('state', this.state.dataSource)
     this.handlePress = this.handlePress.bind(this);
-    this.handleSignOut == this.handleSignOut.bind(this);
+    this.handleSignOut = this.handleSignOut.bind(this);
 
   };
 
   componentWillReceiveProps(props) {
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    const dataSource =  ds.cloneWithRows(props.cart);
+
+    let dataSource = props.cart;
+    console.log('f', props.cart)
     this.setState({
       dataSource: dataSource,
     });
@@ -49,30 +52,32 @@ class CartModal extends Component {
           <View style={styles.header}>
             <Checkout />
           </View>
-          <ListView
-              dataSource={this.state.dataSource}
-              enableEmptySections={true}
-              renderRow={(rowData) => <View style={styles.food}>
-                                        <Text>Meal:</Text>
-                                        <Text>Protein: {rowData.meal[0]}</Text>
-                                        <Text>Protein Flavor: {rowData.meal[1]}</Text>
-                                        <Text>Vegetables: {rowData.meal[2]}</Text>
-                                        <Text>Starches: {rowData.meal[3]}</Text>
-                                      </View>}
-              
-              />
+          <View style={styles.food}>
+            <FlatList
+                data={this.state.dataSource}
+                renderItem={(item, index) => this._renderItemComponent(item, index)}
+                ItemSeparatorComponent={(index) => <View key={index} style={styles.separator} />}
+                />
+          </View>
           <TouchableOpacity onPress={this.handlePress}><Text style={styles.close}>Close</Text></TouchableOpacity>
           <TouchableOpacity onPress={this.handleSignOut.bind(this)}><Text style={styles.close}>sign out</Text></TouchableOpacity>
         </View>
       </Modal> 
     );
   };
+
+  _renderItemComponent = ({item, index}) => (
+      <CartItem item={item} index={index}/>
+  );
+
 };
+
 
 export default CartModal;
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     width: width,
     height: height,
   },
@@ -82,15 +87,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  text: {
-    alignSelf: 'center',
-    color: 'white',
-    fontSize: 40,
-
-  },
   food: {
+    flex: 1,
+    marginTop: 20,
+    alignSelf: 'center',
+    width: stylings.width * .9,
+    height: stylings.height * .6,
     flexDirection: 'column',
     marginBottom: 20,
+
   },
   close: {
     fontSize: 25,
@@ -99,4 +104,10 @@ const styles = StyleSheet.create({
   icon: {
     marginTop: 10,
   },
+  separator: {
+    width: containerWidth,
+    alignSelf: 'center',
+    height: StyleSheet.hairlineWidth,
+    backgroundColor: '#8E8E8E',
+  }
 })
