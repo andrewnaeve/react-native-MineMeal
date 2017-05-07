@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { containerWidth } from '../assets/styles/style';
 import { signOut } from '../actions/auth';
 
-Cart = (props) => (
+const Cart = (props) => (
     <Icon style={styles.icon} name="md-cart" size={40} color="#00bff3" />
 );
 

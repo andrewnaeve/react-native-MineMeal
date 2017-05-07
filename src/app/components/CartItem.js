@@ -35,6 +35,7 @@ class CartItem extends Component {
 };
 
 export default CartItem;
+
 const styles = StyleSheet.create({
   container: {
     marginBottom: 10,
