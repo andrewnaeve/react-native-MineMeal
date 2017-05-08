@@ -7,62 +7,61 @@ import { containerWidth } from '../assets/styles/style';
 import { signOut } from '../actions/auth';
 
 const Cart = (props) => (
-    <Icon style={styles.icon} name="md-cart" size={40} color="#00bff3" />
+  <Icon style={styles.icon} name='md-cart' size={40} color='#00bff3' />
 );
 
-
 class ShoppingIcon extends Component {
-   constructor(props) {
-    super(props)
+  constructor (props) {
+    super(props);
     this.state = {
-      modalVisible: false,
+      modalVisible: false
     };
     this.handlePress = this.handlePress.bind(this);
     this.springValue = new Animated.Value(1);
   }
 
-  spring() {
-    this.springValue.setValue(.70)
+  spring () {
+    this.springValue.setValue(0.70);
     Animated.spring(
       this.springValue,
       {
         toValue: 1,
-        friction: 1,
+        friction: 1
       }
-    ).start()
+    ).start();
   }
 
-  handlePress() {
+  handlePress () {
     this.setState({
-      modalVisible: true,
+      modalVisible: true
     });
-    console.log('presss')
+    console.log('presss');
   }
 
-  closeModal() {
+  closeModal () {
     this.setState({
       modalVisible: false
     });
   }
 
-  componentWillReceiveProps() {
-    this.spring()
+  componentWillReceiveProps () {
+    this.spring();
   }
 
-  render() {
-    return(
+  render () {
+    return (
       <View style={styles.container} >
-      <TouchableOpacity onPress={this.handlePress}>
-      <CartModal visible={this.state.modalVisible} closeModal={this.closeModal.bind(this)}/>
-        <Cart />
-        <Animated.View style={[styles.circle, {transform: [{scale: this.springValue}]} ]}>
-          <Text style={styles.text}>{this.props.cart.length}</Text>
-        </Animated.View>
+        <TouchableOpacity onPress={this.handlePress}>
+          <CartModal visible={this.state.modalVisible} closeModal={this.closeModal.bind(this)} />
+          <Cart />
+          <Animated.View style={[styles.circle, {transform: [{scale: this.springValue}]} ]}>
+            <Text style={styles.text}>{this.props.cart.length}</Text>
+          </Animated.View>
         </TouchableOpacity>
       </View>
     );
-  };
-};
+  }
+}
 
 export default ShoppingIcon;
 
@@ -71,14 +70,14 @@ const styles = StyleSheet.create({
     height: 50,
     width: 50,
     marginRight: 10,
-    marginBottom: 20,
+    marginBottom: 20
 
   },
   icon: {
     position: 'absolute',
     right: 10,
     top: 10,
-    backgroundColor: 'transparent',
+    backgroundColor: 'transparent'
   },
   circle: {
     position: 'absolute',
@@ -88,11 +87,11 @@ const styles = StyleSheet.create({
     height: 25,
     width: 25,
     borderRadius: 55,
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   text: {
     textAlign: 'center',
     color: 'white',
-    backgroundColor: 'transparent',
-  },
+    backgroundColor: 'transparent'
+  }
 });

@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Modal, Text, StyleSheet, } from 'react-native';
+import { View, Modal, Text, StyleSheet } from 'react-native';
 import Button from 'apsl-react-native-button';
 
 import * as stylings from '../../assets/styles/style';
 import FooterButton from './FooterButtons';
 
-const AddCheckout = (props) =>(
+const AddCheckout = (props) => (
 
   <View style={styles.button}>
-      <Text style={styles.buttonText}>{props.children}</Text>
-  </View>     
+    <Text style={styles.buttonText}>{props.children}</Text>
+  </View>
 
 );
 
@@ -21,9 +21,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     textAlign: 'center',
     color: 'white',
-    fontSize: 25,
+    fontSize: 25
   },
-    button: {
+  button: {
     width: stylings.block,
     height: 50,
     borderRadius: 10,
@@ -31,9 +31,8 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     backgroundColor: '#fd980a',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
 
-  },
+  }
 
-
-})
+});

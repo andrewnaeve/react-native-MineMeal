@@ -3,12 +3,12 @@ import { signOut } from '../actions/auth';
 import CartModal from '../components/CartModal';
 
 const mapStateToProps = ({ cart }) => {
-  return { cart }
+  return { cart };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    signOut() { dispatch(signOut()); },
+    signOut () { dispatch(signOut()); }
   };
 };
 

@@ -2,9 +2,9 @@ import { APP_READY } from '../actions/types';
 import initialState from '../../initial-state';
 
 const appIsReady = (state = initialState.appIsReady, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case APP_READY:
-      return true;   
+      return true;
     default:
       return state;
   }

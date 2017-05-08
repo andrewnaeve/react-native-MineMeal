@@ -6,7 +6,6 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { containerWidth } from '../assets/styles/style';
 import { connect } from 'react-redux';
 
-
 const OrderHead = () => (
   <View>
     <Logo />
@@ -22,15 +21,15 @@ export default OrderHead;
 
 const { height, width } = Dimensions.get('window');
 
-const styles = StyleSheet.create({ 
-	container: {
-		width: containerWidth,
-		flexDirection: 'row',
-		justifyContent: 'flex-end',
-	},
-	center: {
-		alignItems: 'center',
-		paddingTop: 70,
-		marginTop: -20,
-	}
+const styles = StyleSheet.create({
+  container: {
+    width: containerWidth,
+    flexDirection: 'row',
+    justifyContent: 'flex-end'
+  },
+  center: {
+    alignItems: 'center',
+    paddingTop: 70,
+    marginTop: -20
+  }
 });

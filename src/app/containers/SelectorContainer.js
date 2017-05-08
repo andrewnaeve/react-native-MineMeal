@@ -6,16 +6,16 @@ import { updateProtein,
 import Selector from '../components/Selector';
 
 const mapStateToProps = ({ currentMeal }) => {
-  return { currentMeal }
+  return { currentMeal };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateProtein(protein) { dispatch(updateProtein(protein)); },
-    updateProteinFlavors(proteinFlavors) { dispatch(updateProteinFlavors(proteinFlavors)); },
-    updateVegetables(vegetables) { dispatch(updateVegetables(vegetables)); },
-    updateStarches(starches) { dispatch(updateStarches(starches)); },
-    addMeal(meal) { dispatch(addMeal(meal)); },
+    updateProtein (protein) { dispatch(updateProtein(protein)); },
+    updateProteinFlavors (proteinFlavors) { dispatch(updateProteinFlavors(proteinFlavors)); },
+    updateVegetables (vegetables) { dispatch(updateVegetables(vegetables)); },
+    updateStarches (starches) { dispatch(updateStarches(starches)); },
+    addMeal (meal) { dispatch(addMeal(meal)); }
   };
 };
 

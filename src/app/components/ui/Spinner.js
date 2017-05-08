@@ -2,35 +2,34 @@ import React, { Component } from 'react';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
 
 class Spinner extends Component {
-
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
-      animating: true,
+      animating: true
     };
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.setToggleTimeout();
   }
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     clearTimeout(this._timer);
   }
 
-  setToggleTimeout() {
+  setToggleTimeout () {
     this._timer = setTimeout(() => {
       this.setState({animating: !this.state.animating});
       this.setToggleTimeout();
     }, 2000);
   }
 
-  render() {
+  render () {
     return (
       <ActivityIndicator
         animating={this.state.animating}
         style={[styles.centering, {height: 80}]}
-        size="large"
+        size='large'
       />
     );
   }

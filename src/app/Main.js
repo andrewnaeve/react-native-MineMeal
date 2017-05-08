@@ -13,7 +13,7 @@ import { appReady } from './actions/appReady';
 import { signIn } from './actions/auth';
 import { auth } from './firebase';
 
-function cacheImages(images) {
+function cacheImages (images) {
   return images.map(image => {
     if (typeof image === 'string') {
       return Image.prefetch(image);
@@ -23,61 +23,58 @@ function cacheImages(images) {
   });
 }
 
-function cacheFonts(fonts) {
+function cacheFonts (fonts) {
   return fonts.map(font => Expo.Font.loadAsync(font));
-};
+}
 
 class Main extends Component {
-
-  constructor(props) {
-    super(props)
+  constructor (props) {
+    super(props);
     this.state = {
       ready: false
-    }
+    };
   }
-  
-  async checkLogInStatus () {
 
+  async checkLogInStatus () {
     let user_data = await AsyncStorage.getItem('user_data');
-    let user = JSON.parse(user_data)
+    let user = JSON.parse(user_data);
     if (user != null) {
       this.props.signIn(user.email, user.password);
     } else {
-      console.log('nope')
+      console.log('nope');
     }
   }
 
-
-  async checking() {
+  async checking () {
     try {
-      await this.checkLogInStatus()
-    } catch(error) {
-      console.log(error)
+      await this.checkLogInStatus();
+    } catch (error) {
+      console.log(error);
     }
   }
 
-  componentWillMount() {
+  componentWillMount () {
     var that = this;
-    this.checkLogInStatus()
+    this.checkLogInStatus();
     this._loadAssetsAsync()
       .then(
-        setTimeout(function() {
-          that.props.appReady()
+        setTimeout(function () {
+          that.props.appReady();
         }, 5000)
-      )
-  }
-  
-  componentDidMount() {
-    this.setState({
-      ready: true
-    })
+      );
   }
 
-  render() {
+  componentDidMount () {
+    this.setState({
+      ready: true
+    });
+  }
+
+  render () {
     if (!this.props.appIsReady) {
       return <Loading />;
     }
-    if(!this.props.auth.loggedIn && this.props.appIsReady) {
+    if (!this.props.auth.loggedIn && this.props.appIsReady) {
       return <Login />;
     }
     return (
@@ -87,8 +84,7 @@ class Main extends Component {
     );
   }
 
-
-  async _loadAssetsAsync() {
+  async _loadAssetsAsync () {
     const imageAssets = cacheImages([
       require('./assets/img/mine_final_logo.png'),
       require('./assets/img/mine_final.png'),
@@ -101,20 +97,19 @@ class Main extends Component {
       require('./assets/img/veggies.jpg'),
       require('./assets/img/david.png'),
       require('./assets/img/cut2.jpg'),
-      require('./assets/video/food-compressed.mp4'),
+      require('./assets/video/food-compressed.mp4')
     ]);
 
     await Promise.all([
-      ...imageAssets,
-    ])
-    
+      ...imageAssets
+    ]);
   }
-};
+}
 
 export default Main;
 
 const styles = {
-	container: {
-		flex: 1,       
-	}
+  container: {
+    flex: 1
+  }
 };
