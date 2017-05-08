@@ -4,39 +4,36 @@ import Entry from '../components/Entry';
 import SignIn from '../containers/SignInContainer';
 import SignUp from '../containers/SignUpContainer';
 import Order from '../Order';
-import MenuModal from '../components/MenuModal'
-import Selector from '../containers/SelectorContainer'
-import Panel from '../components/Panel'
+import MenuModal from '../components/MenuModal';
+import Selector from '../containers/SelectorContainer';
+import Panel from '../components/Panel';
 
 export const Login = StackNavigator({
-  Entry: {
-    screen: Entry
-  },
-  SignIn: {
-    screen: SignIn,
-  },
-  SignUp: {
-    screen: SignUp
-  }
-}, {
+    Entry: {
+      screen: Entry
+    },
+    SignIn: {
+      screen: SignIn
+    },
+    SignUp: {
+      screen: SignUp
+    }
+  }, {
     mode: 'modal',
     headerMode: 'none',
     navigationOptions: {
-      gesturesEnabled: true,
+      gesturesEnabled: true
     }
   }
 );
 
 export const OrderForm = StackNavigator({
-
   OrderForm: {
     screen: Order
   },
   MenuModal: {
     screen: MenuModal
-  },
-
+  }
 }, {
   headerMode: 'none'
-})
-
+});
