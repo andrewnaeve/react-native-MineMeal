@@ -58,9 +58,7 @@ class Main extends Component {
     this.checkLogInStatus();
     this._loadAssetsAsync()
       .then(
-        setTimeout(function () {
-          that.props.appReady();
-        }, 5000)
+        console.log('done loading')
       );
   }
 
@@ -71,10 +69,8 @@ class Main extends Component {
   }
 
   render () {
-    if (!this.props.appIsReady) {
-      return <Loading />;
-    }
-    if (!this.props.auth.loggedIn && this.props.appIsReady) {
+
+    if (!this.props.auth.loggedIn) {
       return <Login />;
     }
     return (

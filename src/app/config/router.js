@@ -1,6 +1,6 @@
 import React from 'react';
 import { StackNavigator } from 'react-navigation';
-import Entry from '../components/Entry';
+import Entry from '../containers/EntryContainer';
 import SignIn from '../containers/SignInContainer';
 import SignUp from '../containers/SignUpContainer';
 import Order from '../Order';

@@ -9,7 +9,7 @@ import { StyleSheet,
 
 import { Components } from 'expo';
 const { LinearGradient } = Components;
-
+import Loading from '../containers/LoadingContainer';
 import SignUp from '../containers/SignUpContainer';
 import SignIn from '../containers/SignInContainer';
 import PairButtons from './ui/PairButtons';
@@ -19,9 +19,9 @@ import * as stylings from '../assets/styles/style';
 export default class Entry extends Component {
   constructor (props) {
     super(props);
-
     this.signInNav = this.signInNav.bind(this);
     this.signUpNav = this.signUpNav.bind(this);
+
   }
 
   signInNav () {
@@ -32,12 +32,18 @@ export default class Entry extends Component {
     this.props.navigation.navigate('SignUp');
   }
 
+  loaded () {
+    this.props.appReady();
+  }
+
   render () {
     return (
 
       <View style={styles.container} >
+
         <Components.Video style={styles.video} source={require('../assets/video/food-compressed.mp4')}
           muted
+          onLoad={() => this.loaded()}
           resizeMode='cover'
           repeat />
         <Image style={styles.logo} source={require('../assets/img/mine_final.png')} />
@@ -46,14 +52,15 @@ export default class Entry extends Component {
 
             <PairButtons onPress={this.signInNav}>
                 Sign In
-              </PairButtons>
+            </PairButtons>
 
             <PairButtons onPress={this.signUpNav}>
                 Sign Up
-              </PairButtons>
+            </PairButtons>
 
           </View>
         </View>
+        <Loading />
       </View>
     );
   }
@@ -66,6 +73,10 @@ const styles = {
   },
   video: {
     position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
     height: stylings.height,
     width: stylings.width
   },

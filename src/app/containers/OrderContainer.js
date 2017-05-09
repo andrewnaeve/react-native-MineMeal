@@ -1,4 +1,3 @@
-import Entry from '../components/Entry';
 import { connect } from 'react-redux';
 import Order from '../Order';
 import { appReady } from '../actions/appReady';
@@ -13,4 +12,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Entry);
+export default connect(mapStateToProps, mapDispatchToProps)(Order);

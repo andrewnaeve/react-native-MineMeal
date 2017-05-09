@@ -16,7 +16,7 @@ class Loading extends Component {
       this.logoAnimation,
       {
         toValue: 1,
-        duration: 1000,
+        duration: 2000,
         easing: Easing.linear
       }
     ).start(() => this.shrinkMe());
@@ -28,7 +28,7 @@ class Loading extends Component {
       this.logoAnimation,
       {
         toValue: 0,
-        duration: 1000,
+        duration: 2000,
         easing: Easing.linear
       }
     ).start(() => this.growMe());
@@ -41,11 +41,11 @@ class Loading extends Component {
   render () {
     const pulse = this.logoAnimation.interpolate({
       inputRange: [0, 1],
-      outputRange: [0.8, 1]
+      outputRange: [0.85, 1]
     });
 
     return (
-      <LinearGradient style={styles.container} colors={['#F7F7F7', '#F7F7F7', '#FF5B37']}>
+      <LinearGradient style={this.props.appIsReady ? styles.hidden : styles.container} colors={['#F7F7F7', '#F7F7F7', '#FF5B37']}>
         <Animated.Image style={[styles.image, {transform: [{scale: pulse}]} ]} source={require('../assets/img/mine_finalWORDS.png')} />
       </LinearGradient>
     );
@@ -56,9 +56,18 @@ export default Loading;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    zIndex: 100,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  hidden: {
+    height: 0,
+    width: 0,
   },
   image: {
     height: Styling.height * 0.8,

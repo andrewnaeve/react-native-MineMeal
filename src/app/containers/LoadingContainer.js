@@ -1,6 +1,5 @@
-import Entry from '../components/Entry';
+import Loading from '../components/Loading';
 import { connect } from 'react-redux';
-import Order from '../Order';
 import { appReady } from '../actions/appReady';
 
 const mapStateToProps = ({ auth, appIsReady }) => {
@@ -13,4 +12,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Entry);
+export default connect(mapStateToProps, mapDispatchToProps)(Loading);
