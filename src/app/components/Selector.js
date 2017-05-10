@@ -5,31 +5,24 @@ import Panel from './Panel';
 import { proteinMenu, proteinFlavorsMenu, vegetablesMenu, starchesMenu } from './Menus';
 import { height, width, containerWidth, block, RStyles } from '../assets/styles/style';
 
-class Selector extends Component {
-  constructor (props) {
-    super(props);
-  }
-  render () {
-    return (
-      <View style={styles.fix}>
-        <View style={styles.container}>
-          <Panel navigation={this.props.navigation} screenProps={{color: styles.orangePanel, menu: proteinMenu, handleChoice: this.props.updateProtein}} style={styles.panel} >
-            {this.props.currentMeal.protein === '' ? <Image style={styles.image} source={require('../assets/img/protein.png')} /> : <Text style={RStyles.text}>{this.props.currentMeal.protein}</Text>}
-          </Panel>
-          <Panel navigation={this.props.navigation} screenProps={{color: styles.bluePanel, menu: proteinFlavorsMenu, handleChoice: this.props.updateProteinFlavors}} style={styles.panel}>
-            {this.props.currentMeal.proteinFlavors === '' ? <Image style={styles.image} source={require('../assets/img/proteinFlavors.png')} /> : <Text style={RStyles.text}>{this.props.currentMeal.proteinFlavors}</Text>}
-          </Panel>
-          <Panel navigation={this.props.navigation} screenProps={{color: styles.greenPanel, menu: vegetablesMenu, handleChoice: this.props.updateVegetables}} style={styles.panel}>
-            {this.props.currentMeal.vegetables === '' ? <Image style={styles.image} source={require('../assets/img/vegetables.png')} /> : <Text style={RStyles.text}>{this.props.currentMeal.vegetables}</Text>}
-          </Panel>
-          <Panel navigation={this.props.navigation} screenProps={{color: styles.mudPanel, menu: starchesMenu, handleChoice: this.props.updateStarches}} style={styles.panel}>
-            {this.props.currentMeal.starches === '' ? <Image style={styles.image} source={require('../assets/img/starches.png')} /> : <Text style={RStyles.text}>{this.props.currentMeal.starches}</Text>}
-          </Panel>
-        </View>
-      </View>
-    );
-  }
-}
+const Selector = ({ navigation, updateProtein, updateProteinFlavors, updateVegetables, updateStarches, currentMeal }) => (
+  <View style={styles.fix}>
+    <View style={styles.container}>
+      <Panel navigation={navigation} screenProps={{color: styles.orangePanel, menu: proteinMenu, handleChoice: updateProtein}} style={styles.panel} >
+        {currentMeal.protein === '' ? <Image style={styles.image} source={require('../assets/img/protein.png')} /> : <Text style={RStyles.text}>{currentMeal.protein}</Text>}
+      </Panel>
+      <Panel navigation={navigation} screenProps={{color: styles.bluePanel, menu: proteinFlavorsMenu, handleChoice: updateProteinFlavors}} style={styles.panel}>
+        {currentMeal.proteinFlavors === '' ? <Image style={styles.image} source={require('../assets/img/proteinFlavors.png')} /> : <Text style={RStyles.text}>{currentMeal.proteinFlavors}</Text>}
+      </Panel>
+      <Panel navigation={navigation} screenProps={{color: styles.greenPanel, menu: vegetablesMenu, handleChoice: updateVegetables}} style={styles.panel}>
+        {currentMeal.vegetables === '' ? <Image style={styles.image} source={require('../assets/img/vegetables.png')} /> : <Text style={RStyles.text}>{currentMeal.vegetables}</Text>}
+      </Panel>
+      <Panel navigation={navigation} screenProps={{color: styles.mudPanel, menu: starchesMenu, handleChoice: updateStarches}} style={styles.panel}>
+        {currentMeal.starches === '' ? <Image style={styles.image} source={require('../assets/img/starches.png')} /> : <Text style={RStyles.text}>{currentMeal.starches}</Text>}
+      </Panel>
+    </View>
+  </View>
+);
 
 export default Selector;
 

@@ -34,4 +34,4 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   }
 });
-        // <MenuModal color={this.props.color} menu={this.props.menu} handleChoice={this.handleChoice.bind(this)}/>
+
