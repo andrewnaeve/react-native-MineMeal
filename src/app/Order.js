@@ -5,23 +5,21 @@ import Logo from './components/Logo';
 import OrderHead from './components/OrderHead';
 import Selector from './containers/SelectorContainer';
 import FooterButtons from './containers/FooterButtons';
+import Loading from './containers/LoadingContainer';
+import * as stylings from './assets/styles/style';
 
-export default class Order extends Component {
-  constructor (props) {
-    super(props);
-  }
+const Order = ({ navigation, appReady }) => (
 
-  render () {
-    return (
-      <Image source={require('./assets/img/cut2.jpg')} style={styles.container}>
-        <OrderHead />
-        <Selector navigation={this.props.navigation} />
-        <FooterButtons />
-      </Image>
-    );
-  }
-}
+  <Image source={require('./assets/img/cut2.jpg')} style={styles.container}
+         onLoad={() => appReady()}
+  >
+    <OrderHead />
+    <Selector navigation={navigation} />
+    <FooterButtons />
+  </Image>
 
+);
+  
 const styles = {
   container: {
     flex: 1,
@@ -29,3 +27,5 @@ const styles = {
     height: null
   }
 };
+
+export default Order;

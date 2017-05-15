@@ -15,5 +15,9 @@ export const SIGN_UP = 'SIGN_UP';
 export const ATTEMPTING_LOGIN = 'ATTEMPTING_LOGIN';
 export const FIREBASE_ERROR = 'FIREBASE_ERROR';
 
-export const APP_READY = 'APP_READY';
 export const LOGGED_IN = 'LOGGED_IN';
+
+export const APP_READY = 'APP_READY';
+export const ASSETS_READY = 'ASSETS_READY';
+export const NOT_READY = 'NOT_READY';
+

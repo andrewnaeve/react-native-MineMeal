@@ -17,11 +17,11 @@ import PairButtons from './ui/PairButtons';
 import * as stylings from '../assets/styles/style';
 
 export default class Entry extends Component {
+  
   constructor (props) {
     super(props);
     this.signInNav = this.signInNav.bind(this);
     this.signUpNav = this.signUpNav.bind(this);
-
   }
 
   signInNav () {
@@ -32,8 +32,11 @@ export default class Entry extends Component {
     this.props.navigation.navigate('SignUp');
   }
 
-  loaded () {
-    this.props.appReady();
+  ready () {
+    let that = this;
+    setTimeout(function() {
+      that.props.appReady()
+    }, 2150)
   }
 
   render () {
@@ -42,9 +45,9 @@ export default class Entry extends Component {
       <View style={styles.container} >
 
         <Components.Video style={styles.video} source={require('../assets/video/food-compressed.mp4')}
-          muted
-          onLoad={() => this.loaded()}
           resizeMode='cover'
+          onLoad={() => this.ready()}
+          muted
           repeat />
         <Image style={styles.logo} source={require('../assets/img/mine_final.png')} />
         <View style={styles.outer}>
@@ -60,7 +63,7 @@ export default class Entry extends Component {
 
           </View>
         </View>
-        <Loading />
+
       </View>
     );
   }
@@ -69,7 +72,8 @@ export default class Entry extends Component {
 const styles = {
   container: {
     flex: 1,
-    alignItems: 'center'
+    alignItems: 'center',
+    zIndex: 1,
   },
   video: {
     position: 'absolute',

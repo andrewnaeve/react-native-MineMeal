@@ -4,12 +4,13 @@ import { View, AsyncStorage } from 'react-native';
 import Order from './Order';
 import CartModal from './components/CartModal';
 import Entry from './components/Entry';
-import Loading from './components/Loading';
+import Loading from './containers/LoadingContainer';
 import AboutDavid from './components/about/AboutDavid';
 import { Login } from './config/router';
 import { OrderForm } from './config/router';
 import { connect } from 'react-redux';
 import { appReady } from './actions/appReady';
+import { assetsReady } from './actions/appReady';
 import { signIn } from './actions/auth';
 import { auth } from './firebase';
 
@@ -57,25 +58,26 @@ class Main extends Component {
     var that = this;
     this.checkLogInStatus();
     this._loadAssetsAsync()
-      .then(
-        console.log('done loading')
-      );
+    .then(
+      this.props.assetsReady()
+    );
   }
 
-  componentDidMount () {
-    this.setState({
-      ready: true
-    });
-  }
 
   render () {
 
     if (!this.props.auth.loggedIn) {
-      return <Login />;
+      return (
+        <View style={styles.container}>
+          <Login />
+          <Loading />
+        </View>
+      );
     }
     return (
       <View style={styles.container}>
         <OrderForm />
+        <Loading />
       </View>
     );
   }
@@ -106,6 +108,6 @@ export default Main;
 
 const styles = {
   container: {
-    flex: 1
+    flex: 1,
   }
 };

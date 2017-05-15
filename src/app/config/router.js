@@ -3,7 +3,7 @@ import { StackNavigator } from 'react-navigation';
 import Entry from '../containers/EntryContainer';
 import SignIn from '../containers/SignInContainer';
 import SignUp from '../containers/SignUpContainer';
-import Order from '../Order';
+import Order from '../containers/OrderContainer';
 import MenuModal from '../components/MenuModal';
 import Selector from '../containers/SelectorContainer';
 import Panel from '../components/Panel';

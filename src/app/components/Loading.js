@@ -5,48 +5,83 @@ import * as Styling from '../assets/styles/style';
 const { LinearGradient } = Components;
 
 class Loading extends Component {
-  constructor (props) {
-    super(props);
-    this.logoAnimation = new Animated.Value(0);
+
+  constructor ({ appIsReady }) {
+    super();
+    this.logoAnimation = new Animated.Value(1);
+    this.opaqueAnimation = new Animated.Value(1);
+    this.state = {
+      visible: true
+    };
   }
 
-  growMe () {
-    this.logoAnimation.setValue(0);
-    Animated.timing(
-      this.logoAnimation,
-      {
-        toValue: 1,
-        duration: 2000,
-        easing: Easing.linear
-      }
-    ).start(() => this.shrinkMe());
+  componentWillReceiveProps ({ appIsReady }) {
+    if (appIsReady.assets === true && appIsReady.app === true) {
+      this.animate();
+    };
+    if (appIsReady.app === false) {
+      this.setState({
+        visible: true
+      })
+
+    }
   }
 
-  shrinkMe () {
+  animate () {
+
     this.logoAnimation.setValue(1);
-    Animated.timing(
-      this.logoAnimation,
-      {
-        toValue: 0,
-        duration: 2000,
-        easing: Easing.linear
-      }
-    ).start(() => this.growMe());
-  }
+    this.opaqueAnimation.setValue(1);
 
-  componentDidMount () {
-    this.growMe();
+    Animated.stagger(1000, [
+      Animated.timing(
+        this.logoAnimation,
+        {
+          toValue: .75,
+          duration: 1000,
+          easing: Easing.ease,
+        }
+      ),
+      Animated.parallel([
+        Animated.timing(
+          this.logoAnimation,
+          {
+            toValue: 10,
+            duration: 150,
+            easing: Easing.ease
+          }
+        ),
+        Animated.timing(
+          this.opaqueAnimation,
+          {
+            toValue: 0,
+            duration: 150,
+            easing: Easing.ease
+          }
+        )
+      ])
+    ]).start(() => {
+      this.setState({
+        visible: false
+      })
+    })
+
   }
 
   render () {
+    
     const pulse = this.logoAnimation.interpolate({
       inputRange: [0, 1],
-      outputRange: [0.85, 1]
+      outputRange: [0, 1]
     });
 
+    const op = this.opaqueAnimation.interpolate({
+      inputRange: [0, 1],
+      outputRange: [0, 1]
+    })
+
     return (
-      <LinearGradient style={this.props.appIsReady ? styles.hidden : styles.container} colors={['#F7F7F7', '#F7F7F7', '#FF5B37']}>
-        <Animated.Image style={[styles.image, {transform: [{scale: pulse}]} ]} source={require('../assets/img/mine_finalWORDS.png')} />
+      <LinearGradient style={this.state.visible ? styles.container : styles.hidden} colors={['#F7F7F7', '#F7F7F7', '#FF5B37']}>
+        <Animated.Image style={[styles.image, {opacity: op}, {transform: [{scale: pulse}]} ]} source={require('../assets/img/mine_finalWORDS.png')} />
       </LinearGradient>
     );
   }
@@ -65,12 +100,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  hidden: {
-    height: 0,
-    width: 0,
+  hidden: { 
+    position: 'absolute',
+    zIndex: -1,
   },
   image: {
-    height: Styling.height * 0.8,
+    height: Styling.height * 0.7,
     width: Styling.containerWidth,
     resizeMode: 'cover'
   }

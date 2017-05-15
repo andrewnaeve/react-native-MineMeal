@@ -35,7 +35,6 @@ class ShoppingIcon extends Component {
     this.setState({
       modalVisible: true
     });
-    console.log('presss');
   }
 
   closeModal () {
