@@ -22,6 +22,9 @@ export default class Entry extends Component {
     super(props);
     this.signInNav = this.signInNav.bind(this);
     this.signUpNav = this.signUpNav.bind(this);
+    this.state = {
+      once: true
+    }
   }
 
   signInNav () {
@@ -33,10 +36,7 @@ export default class Entry extends Component {
   }
 
   ready () {
-    let that = this;
-    setTimeout(function() {
-      that.props.appReady()
-    }, 2150)
+    console.log('whe;ljd')
   }
 
   render () {

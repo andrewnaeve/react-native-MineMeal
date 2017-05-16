@@ -20,4 +20,6 @@ export const LOGGED_IN = 'LOGGED_IN';
 export const APP_READY = 'APP_READY';
 export const ASSETS_READY = 'ASSETS_READY';
 export const NOT_READY = 'NOT_READY';
+export const ONCE_ONLY = 'ONCE_ONLY';
+
 

@@ -1,4 +1,4 @@
-import { ASSETS_READY, APP_READY, NOT_READY, SIGN_IN, SIGN_OUT } from '../actions/types';
+import { ASSETS_READY, APP_READY, NOT_READY, SIGN_IN, SIGN_OUT, ONCE_ONLY } from '../actions/types';
 import initialState from '../../initial-state';
 
 const appIsReady = (state = initialState.appIsReady, action) => {
@@ -17,6 +17,11 @@ const appIsReady = (state = initialState.appIsReady, action) => {
       return {
         ...state,
         app: false
+      }
+    case ONCE_ONLY:
+      return {
+        ...state,
+        once: false
       }
     case SIGN_OUT:
       return {

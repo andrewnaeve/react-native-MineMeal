@@ -1,4 +1,4 @@
-import { APP_READY, ASSETS_READY, NOT_READY } from './types';
+import { APP_READY, ASSETS_READY, NOT_READY, ONCE_ONLY } from './types';
 
 export const assetsReady = () => {
   return (dispatch) => {
@@ -17,3 +17,5 @@ export const notReady = () => {
     dispatch({ type: 'NOT_READY' })
   };
 };
+
+

@@ -11,19 +11,24 @@ class Loading extends Component {
     this.logoAnimation = new Animated.Value(1);
     this.opaqueAnimation = new Animated.Value(1);
     this.state = {
-      visible: true
+      visible: true,
+      once: true
     };
   }
 
   componentWillReceiveProps ({ appIsReady }) {
-    if (appIsReady.assets === true && appIsReady.app === true) {
+
+    if (appIsReady.assets === true && appIsReady.app === true && this.state.once === true) {
+      console.log('a')
       this.animate();
+      this.setState({
+        once: false
+      })
     };
     if (appIsReady.app === false) {
       this.setState({
         visible: true
       })
-
     }
   }
 
@@ -61,14 +66,15 @@ class Loading extends Component {
       ])
     ]).start(() => {
       this.setState({
-        visible: false
+        visible: false,
+        once: true
       })
     })
 
   }
 
   render () {
-    
+
     const pulse = this.logoAnimation.interpolate({
       inputRange: [0, 1],
       outputRange: [0, 1]
@@ -78,6 +84,8 @@ class Loading extends Component {
       inputRange: [0, 1],
       outputRange: [0, 1]
     })
+
+
 
     return (
       <LinearGradient style={this.state.visible ? styles.container : styles.hidden} colors={['#F7F7F7', '#F7F7F7', '#FF5B37']}>

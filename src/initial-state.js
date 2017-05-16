@@ -12,7 +12,10 @@ const initialState = {
     starches: '',
   },
   cart: [],
-  appIsReady: false,
+  appIsReady: {
+    assets: false,
+    app: false,
+  }
 };
 
 export default initialState;
