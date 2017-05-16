@@ -36,7 +36,7 @@ export default class Entry extends Component {
   }
 
   ready () {
-    console.log('whe;ljd')
+    this.props.appReady();
   }
 
   render () {
@@ -44,7 +44,7 @@ export default class Entry extends Component {
 
       <View style={styles.container} >
 
-        <Components.Video style={styles.video} source={require('../assets/video/food-compressed.mp4')}
+        <Components.Video style={styles.video} source={require('../assets/video/food.mp4')}
           resizeMode='cover'
           onLoad={() => this.ready()}
           muted

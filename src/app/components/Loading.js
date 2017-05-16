@@ -19,7 +19,6 @@ class Loading extends Component {
   componentWillReceiveProps ({ appIsReady }) {
 
     if (appIsReady.assets === true && appIsReady.app === true && this.state.once === true) {
-      console.log('a')
       this.animate();
       this.setState({
         once: false
@@ -85,8 +84,6 @@ class Loading extends Component {
       outputRange: [0, 1]
     })
 
-
-
     return (
       <LinearGradient style={this.state.visible ? styles.container : styles.hidden} colors={['#F7F7F7', '#F7F7F7', '#FF5B37']}>
         <Animated.Image style={[styles.image, {opacity: op}, {transform: [{scale: pulse}]} ]} source={require('../assets/img/mine_finalWORDS.png')} />
@@ -110,7 +107,8 @@ const styles = StyleSheet.create({
   },
   hidden: { 
     position: 'absolute',
-    zIndex: -1,
+    height: 0,
+    width: 0,
   },
   image: {
     height: Styling.height * 0.7,

@@ -95,7 +95,7 @@ class Main extends Component {
       require('./assets/img/veggies.jpg'),
       require('./assets/img/david.png'),
       require('./assets/img/cut2.jpg'),
-      require('./assets/video/food-compressed.mp4')
+      require('./assets/video/food.mp4')
     ]);
 
     await Promise.all([
