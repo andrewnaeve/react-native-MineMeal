@@ -23,7 +23,7 @@ class CartItem extends Component {
 
   render () {
     return (
-      <Swipeout right={this.swipeoutBtns} backgroundColor={'white'}>
+      <Swipeout right={this.swipeoutBtns} backgroundColor={'white'} key={this.index}>
         <View style={styles.container}>
           <Text style={[styles.header]}>Meal {this.index + 1} </Text>
           <Text style={[styles.indent, styles.text]}>{this.item.meal[1]} {this.item.meal[0]} with {this.item.meal[2]} and {this.item.meal[3]} </Text>

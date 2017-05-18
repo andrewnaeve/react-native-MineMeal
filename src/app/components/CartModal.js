@@ -24,8 +24,9 @@ class CartModal extends Component {
 
   };
 
-  componentWillReceiveProps(props) {
+  _keyExtractor = (item, index) => item.id;
 
+  componentWillReceiveProps(props) {
     let dataSource = props.cart;
     this.setState({
       dataSource: dataSource,
@@ -54,8 +55,9 @@ class CartModal extends Component {
           <View style={styles.food}>
             <FlatList
                 data={this.state.dataSource}
+                keyExtractor={this._keyExtractor}
                 renderItem={(item, index) => this._renderItemComponent(item, index)}
-                ItemSeparatorComponent={(index) => <View key={index} style={styles.separator} />}
+                ItemSeparatorComponent={(index) => <View style={styles.separator} />}
                 />
           </View>
           <TouchableOpacity onPress={this.handlePress}><Text style={styles.close}>Close</Text></TouchableOpacity>

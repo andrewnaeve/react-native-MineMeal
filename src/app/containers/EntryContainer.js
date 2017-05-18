@@ -1,7 +1,7 @@
 import Entry from '../components/Entry';
 import { connect } from 'react-redux';
 import Order from '../Order';
-import { appReady } from '../actions/appReady';
+import { appReady, anonymous } from '../actions/appReady';
 
 const mapStateToProps = ({ auth, appIsReady }) => {
   return { appIsReady };
@@ -9,7 +9,7 @@ const mapStateToProps = ({ auth, appIsReady }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    appReady () { dispatch(appReady()); }
+    appReady () { dispatch(appReady()); },
   };
 };
 

@@ -25,16 +25,17 @@ const appIsReady = (state = initialState.appIsReady, action) => {
       }
     case SIGN_OUT:
       return {
+        ...state,
         app: false
       };
     case SIGN_IN:
       return {
         ...state,
         app: false
-      }
+      };
     default:
       return state;
-  }
+  };
 };
 
 export default appIsReady;

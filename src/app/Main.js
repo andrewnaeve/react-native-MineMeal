@@ -6,12 +6,10 @@ import CartModal from './components/CartModal';
 import Entry from './components/Entry';
 import Loading from './containers/LoadingContainer';
 import AboutDavid from './components/about/AboutDavid';
-import { Login } from './config/router';
-import { OrderForm } from './config/router';
+import { Login, OrderForm } from './config/router';
 import { connect } from 'react-redux';
-import { appReady } from './actions/appReady';
-import { assetsReady } from './actions/appReady';
-import { signIn } from './actions/auth';
+import { appReady, assetsReady } from './actions/appReady';
+import { signIn, anon } from './actions/auth';
 import { auth } from './firebase';
 
 function cacheImages (images) {
@@ -37,12 +35,13 @@ class Main extends Component {
   }
 
   async checkLogInStatus () {
+
     let user_data = await AsyncStorage.getItem('user_data');
     let user = JSON.parse(user_data);
     if (user != null) {
-      this.props.signIn(user.email, user.password);
+       this.props.signIn(user.email, user.password);
     } else {
-      console.log('nope');
+      this.props.anon();
     }
   }
 
@@ -66,21 +65,16 @@ class Main extends Component {
 
   render () {
 
-    if (!this.props.auth.loggedIn) {
-      return (
-        <View style={styles.container}>
-          <Login />
-          <Loading />
-        </View>
-      );
-    }
     return (
       <View style={styles.container}>
-        <OrderForm />
+        { this.props.auth.status === 'ANONYMOUS' && <Login /> }
+        { this.props.auth.status === 'SIGNED_IN' && <OrderForm /> }
         <Loading />
       </View>
     );
   }
+
+
 
   async _loadAssetsAsync () {
     const imageAssets = cacheImages([

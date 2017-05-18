@@ -1,6 +1,6 @@
 const initialState = {
   auth: {
-    status: 'ANONYMOUS',
+    status: 'UNKNOWN',
     loggedIn: false,
     email: '',
     error: '',

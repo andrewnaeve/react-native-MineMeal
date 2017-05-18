@@ -2,7 +2,7 @@ import { AsyncStorage } from 'react-native';
 import { createAction } from 'redux-actions';
 import { auth } from '../firebase';
 
-import { ATTEMPTING_LOGIN, FIREBASE_ERROR, SIGN_IN, SIGN_OUT } from './types';
+import { ATTEMPTING_LOGIN, FIREBASE_ERROR, SIGN_IN, SIGN_OUT, ANONYMOUS } from './types';
 
 export const signIn = (email, password) => {
   return (dispatch) => {
@@ -58,6 +58,12 @@ export const signOut = () => {
   };
 };
 
+export const anonymous = () => {
+  return {
+    type: 'ANONYMOUS'
+  };
+};
+
 const signedIn = (user) => {
   return {
     type: 'SIGN_IN',
@@ -70,3 +76,4 @@ const signedOut = (user) => {
     type: 'SIGN_OUT'
   };
 };
+

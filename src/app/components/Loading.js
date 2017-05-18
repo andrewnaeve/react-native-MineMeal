@@ -17,7 +17,6 @@ class Loading extends Component {
   }
 
   componentWillReceiveProps ({ appIsReady }) {
-
     if (appIsReady.assets === true && appIsReady.app === true && this.state.once === true) {
       this.animate();
       this.setState({
@@ -107,8 +106,12 @@ const styles = StyleSheet.create({
   },
   hidden: { 
     position: 'absolute',
-    height: 0,
-    width: 0,
+    top: 0,
+    right: 0,
+    left: 0,
+    bottom: 0,
+    justifyContent: 'center',
+    zIndex: -100,
   },
   image: {
     height: Styling.height * 0.7,
