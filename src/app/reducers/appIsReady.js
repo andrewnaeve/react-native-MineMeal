@@ -3,32 +3,27 @@ import initialState from '../../initial-state';
 
 const appIsReady = (state = initialState.appIsReady, action) => {
   switch (action.type) {
-    case ASSETS_READY:
+    case 'ASSETS_READY':
       return {
         ...state, 
         assets: true
       };
-    case APP_READY:
+    case 'APP_READY':
       return {
         ...state,
         app: true
       };
-    case NOT_READY:
+    case 'NOT_READY':
       return {
         ...state,
         app: false
       }
-    case ONCE_ONLY:
-      return {
-        ...state,
-        once: false
-      }
-    case SIGN_OUT:
+    case 'SIGN_OUT':
       return {
         ...state,
         app: false
       };
-    case SIGN_IN:
+    case 'SIGN_IN':
       return {
         ...state,
         app: false

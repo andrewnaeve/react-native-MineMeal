@@ -68,7 +68,6 @@ class Loading extends Component {
         once: true
       })
     })
-
   }
 
   render () {

@@ -1,7 +1,7 @@
 const initialState = {
   auth: {
     status: 'UNKNOWN',
-    loggedIn: false,
+    loggedIn: null,
     email: '',
     error: '',
   },

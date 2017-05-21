@@ -4,12 +4,13 @@ import { View, AsyncStorage } from 'react-native';
 import Order from './Order';
 import CartModal from './components/CartModal';
 import Entry from './components/Entry';
+import Backdrop from './components/Backdrop';
 import Loading from './containers/LoadingContainer';
 import AboutDavid from './components/about/AboutDavid';
 import { Login, OrderForm } from './config/router';
 import { connect } from 'react-redux';
 import { appReady, assetsReady } from './actions/appReady';
-import { signIn, anon } from './actions/auth';
+import { signIn, anonymous } from './actions/auth';
 import { auth } from './firebase';
 
 function cacheImages (images) {
@@ -41,7 +42,7 @@ class Main extends Component {
     if (user != null) {
        this.props.signIn(user.email, user.password);
     } else {
-      this.props.anon();
+      this.props.anonymous();
     }
   }
 
