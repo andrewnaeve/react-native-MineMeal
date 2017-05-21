@@ -17,6 +17,7 @@ class Loading extends Component {
   }
 
   componentWillReceiveProps ({ appIsReady }) {
+    console.log('prop reveived')
     if (appIsReady.assets === true && appIsReady.app === true && this.state.once === true) {
       this.animate();
       this.setState({

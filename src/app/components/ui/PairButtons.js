@@ -27,7 +27,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     justifyContent: 'center',
     padding: 15,
-    alignItems: 'center'
+    alignItems: 'center',
+    elevate: 2
   },
   text: {
     backgroundColor: 'transparent',

@@ -46,14 +46,6 @@ class Main extends Component {
     }
   }
 
-  async checking () {
-    try {
-      await this.checkLogInStatus();
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   componentWillMount () {
     var that = this;
     this.checkLogInStatus();
@@ -68,8 +60,8 @@ class Main extends Component {
 
     return (
       <View style={styles.container}>
-        { this.props.auth.status === 'ANONYMOUS' && <Login /> }
-        { this.props.auth.status === 'SIGNED_IN' && <OrderForm /> }
+        { this.props.auth.loggedIn === false && <Login /> }
+        { this.props.auth.loggedIn === true && <OrderForm /> }
         <Loading />
       </View>
     );
